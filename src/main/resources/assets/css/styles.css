@@ -1,0 +1,62 @@
+.nav-tabs .nav-link {
+  color: #171717;
+  font-size:16px;
+}
+
+.nav.nav-tabs {
+  border-bottom: none;
+  
+}
+
+.nav-tabs.nav-item{
+  width: 20%;
+  margin:auto;
+}
+
+.nav-tabs .nav-link.active {
+  color: #171717;
+  border: none;
+  text-decoration: underline;
+}
+
+.stat-card {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background-color: white;
+  padding: 8px;
+  border-radius: 1rem;
+}
+
+#country-table {
+  background-color: white;
+  border: 1px rgba(0,0,0,.125) solid;
+  border-radius: 2rem;
+}
+
+
+#bigMap {
+  width: 100%;
+  height: 80vh;
+}
+
+#info{
+  background:#222229; 
+  height:80vh;
+  color: #EFEFEF;
+  padding: 80px;
+}
+
+#info .stat{
+  font-family: 'Fira Sans', sans-serif;
+  font-size:24px;
+}
+#info .title{
+  font-family: Nunito, sans-serif;
+  font-size:14px;
+}
+
+#info .divider{
+  margin: 12px 0px;
+  width: 100%;
+  border-bottom: 1px solid #707070;
+}
