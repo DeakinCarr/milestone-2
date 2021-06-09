@@ -3,6 +3,9 @@ package app;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,121 +29,27 @@ public class JDBCConnection {
         System.out.println("Created JDBC Connection Object");
     }
 
-    /**
-     * Get all of the Movies in the database
-     */
-    public ArrayList<String> getMovies() {
-        ArrayList<String> movies = new ArrayList<String>();
-
-        // Setup the variable for the JDBC connection
-        Connection connection = null;
-
+    public String readFile(String path) throws IOException {
+        String everything = "";
+        BufferedReader br = new BufferedReader(new FileReader(path));
         try {
-            // Connect to JDBC data base
-            connection = DriverManager.getConnection(DATABASE);
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
 
-            // Prepare a new SQL Query & Set a timeout
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-
-            // The Query
-            String query = "SELECT * FROM movie";
-            
-            // Get Result
-            ResultSet results = statement.executeQuery(query);
-
-            // Process all of the results
-            // The "results" variable is similar to an array
-            // We can iterate through all of the database query results
-            while (results.next()) {
-                // We can lookup a column of the a single record in the
-                // result using the column name
-                // BUT, we must be careful of the column type!
-                int id              = results.getInt("mvnumb");
-                String movieName     = results.getString("mvtitle");
-                int year            = results.getInt("yrmde");
-                String type         = results.getString("mvtype");
-
-                // For now we will just store the movieName and ignore the id
-                movies.add(movieName);
+            while (line != null) {
+                sb.append(line);
+                sb.append(System.lineSeparator());
+                line = br.readLine();
             }
-
-            // Close the statement because we are done with it
-            statement.close();
-        } catch (SQLException e) {
-            // If there is an error, lets just pring the error
-            System.err.println(e.getMessage());
+            everything = sb.toString();
         } finally {
-            // Safety code to cleanup
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                // connection close failed.
-                System.err.println(e.getMessage());
-            }
+            br.close();
         }
-
-        // Finally we return all of the movies
-        return movies;
+        return everything;
     }
 
-    /**
-     * Get all the movies in the database by a given type.
-     * Note this takes a string of the type as an argument!
-     * This has been implemented for you as an example.
-     * HINT: you can use this to find all of the horror movies!
-     */
-    public ArrayList<String> getMoviesByType(String movieType) {
-        ArrayList<String> movies = new ArrayList<String>();
-
-        // Setup the variable for the JDBC connection
-        Connection connection = null;
-
-        try {
-            // Connect to JDBC data base
-            connection = DriverManager.getConnection(DATABASE);
-
-            // Prepare a new SQL Query & Set a timeout
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-
-            // The Query
-            String query = "SELECT * FROM movie WHERE mvtype = '" + movieType + "'";
-            System.out.println(query);
-            
-            // Get Result
-            ResultSet results = statement.executeQuery(query);
-
-            // Process all of the results
-            while (results.next()) {
-                String movieName     = results.getString("mvtitle");
-                movies.add(movieName);
-            }
-
-            // Close the statement because we are done with it
-            statement.close();
-        } catch (SQLException e) {
-            // If there is an error, lets just pring the error
-            System.err.println(e.getMessage());
-        } finally {
-            // Safety code to cleanup
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                // connection close failed.
-                System.err.println(e.getMessage());
-            }
-        }
-
-        // Finally we return all of the movies
-        return movies;
-    }
-
-    public Map<String, Object> getMostRecent(String countryCode) {
+    public Map<String, Object> getMostRecent(String countryCode) throws IOException {
+        System.out.println("Called: getMostRecent()");
         Map<String, Object> output = new HashMap<String, Object>();
         Connection connection = null;
         try {
@@ -151,18 +60,7 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String query = "SELECT co.Country, da.Date, Cases, Deaths "
-                + "FROM Statistics st "
-                + "LEFT JOIN Location lo ON "
-                + "st.Location = lo.ID "    
-                + "LEFT JOIN Countries co ON "
-                + "lo.Country = co.ID "
-                + "LEFT JOIN Dates da ON "
-                + "da.ID = st.Date "
-                + "WHERE Deaths >= 0 AND Cases >= 0 "
-                + "AND co.Country_Code = '" + countryCode + "' "    
-                + "ORDER BY da.ID DESC "
-                + "LIMIT 1;";
+            String query = String.format("SELECT * FROM getMostRecent WHERE Country_Code = '%s'", countryCode);
 
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -171,10 +69,10 @@ public class JDBCConnection {
 
             while(results.next()){
 
-                String Country = results.getString("Country");
+                String Country = results.getString("Country_Region_Name");
                 String Date = results.getString("Date");
-                String Cases = formatter.format(results.getInt("Cases"));
-                String Deaths = formatter.format(results.getInt("Deaths"));
+                String Cases = formatter.format(results.getInt("NewCases"));
+                String Deaths = formatter.format(results.getInt("NewDeaths"));
 
                 output.put("Country", Country);
                 output.put("LastDate", Date);
@@ -198,10 +96,12 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
+        System.out.println("Concluded: getMostRecent()\n");
         return output;
     }
 
-    public Map<String, Object> getCumulative(String countryCode) {
+    public Map<String, Object> getCumulative(String countryCode) throws IOException {
+        System.out.println("Called: getCumulative(countryCode)");
         Map<String, Object> output = new HashMap<String, Object>();
         Connection connection = null;
         try {
@@ -211,15 +111,10 @@ public class JDBCConnection {
             // Prepare a new SQL Query & Set a timeout
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
+            
+            String query = "SELECT * FROM getCumulative WHERE Country_Code = '%s'";
+            query = String.format(query, countryCode);
 
-            String query = "SELECT co.Country, SUM(Cases) AS Cases, SUM(Deaths) AS Deaths "
-            + "FROM Statistics st "
-            + "LEFT JOIN Location lo ON "
-                + "st.Location = lo.ID "
-            + "LEFT JOIN Countries co ON "
-                + "lo.Country = co.ID "
-            + "WHERE Deaths >= 0 AND Cases >= 0 "
-                + "AND co.Country_Code = '" + countryCode + "'";
 
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -228,7 +123,7 @@ public class JDBCConnection {
             
             while(results.next()){
 
-                String Country = results.getString("Country");
+                String Country = results.getString("Country_Region_Name");
                 String Cases = formatter.format(results.getInt("Cases"));
                 String Deaths = formatter.format(results.getInt("Deaths"));
 
@@ -253,9 +148,11 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
+        System.out.println("Concluded: getCumulative(countryCode)\n");
         return output;
     }
-    public Map<String, Object> getCumulative() {
+    public Map<String, Object> getCumulative() throws IOException {
+        System.out.println("Called: getCumulative()");
         Map<String, Object> output = new HashMap<String, Object>();
         Connection connection = null;
         try {
@@ -266,13 +163,7 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String query = "SELECT SUM(Cases) AS Cases, SUM(Deaths) AS Deaths "
-            + "FROM Statistics st "
-            + "LEFT JOIN Location lo ON "
-                + "st.Location = lo.ID "
-            + "LEFT JOIN Countries co ON "
-                + "lo.Country = co.ID "
-            + "WHERE Deaths >= 0 AND Cases >= 0 ";
+            String query = "SELECT * FROM getCumulative";
 
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -303,10 +194,12 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
+        System.out.println("Concluded: getCumulative()\n");
         return output;
     }
 
-    public ArrayList<Map<String, Object>> getHeatMap() {
+    public ArrayList<Map<String, Object>> getHeatMap() throws IOException {
+        System.out.println("Called: getHeatMap()");
         ArrayList<Map<String, Object>> output = new ArrayList<>();
         Connection connection = null;
         try {
@@ -317,9 +210,7 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String query = "SELECT Countries.Country_Code, Sum(Statistics.Cases) AS SumOfCases "
-            + "FROM States INNER JOIN ((Countries INNER JOIN Location ON Countries.ID = Location.Country) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location) ON States.ID = Location.State "
-            + "GROUP BY Countries.Country_Code";
+            String query = "SELECT Country_Code, Cases FROM getCumulative";
             
 
             // Get Result
@@ -329,7 +220,7 @@ public class JDBCConnection {
                 Map<String, Object> tmp = new HashMap<String, Object>();
 
                 String Code = results.getString("Country_Code");
-                int Cases = results.getInt("SumOfCases");
+                int Cases = results.getInt("Cases");
 
                 tmp.put("id", Code);
                 tmp.put("value", Cases);
@@ -352,10 +243,12 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
+        System.out.println("Concluded: getHeatMap()\n");
         return output;
     }
     
-    public ArrayList<ArrayList<String>> getTableValues() {
+    public ArrayList<ArrayList<String>> getTableValues() throws IOException {
+        System.out.println("Called: getTableValues()");
         ArrayList<ArrayList<String>> table = new ArrayList<>();
         Connection connection = null;
 
@@ -367,40 +260,18 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String query = "SELECT CUM.Country_Code AS 'Code', cou.Country, cum.SumOfCases AS 'Total Cases', cum.SumOfDeaths AS 'Total Deaths', pop.SumOfPopulation AS 'Population', ((cum.SumOfCases) * 10000 / pop.SumOfPopulation) AS 'Population Infected %', ((cum.SumOfDeaths) * 10000 / pop.SumOfPopulation) AS 'Deaths %', new.newestcases AS 'New Cases', new.newestdeaths AS 'New Deaths' "
-            + "FROM Countries "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, Sum(Statistics.Cases) AS SumOfCases, Sum(Statistics.Deaths) AS SumOfDeaths "
-            + "        FROM States INNER JOIN ((Countries INNER JOIN Location ON Countries.ID = Location.Country) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location) ON States.ID = Location.State "
-            + "        GROUP BY Countries.Country_Code) Cum "
-            + "    ON cum.Country_Code = Countries.Country_Code "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, Sum(Location.Population) AS SumOfPopulation "
-            + "        FROM States INNER JOIN (Countries INNER JOIN Location ON Countries.ID = Location.Country) ON States.ID = Location.State "
-            + "        GROUP BY Countries.Country_Code) Pop "
-            + "    ON pop.Country_Code = Countries.Country_Code "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, Countries.Country "
-            + "        FROM Countries) Cou "
-            + "    ON cou.Country_Code = Countries.Country_Code "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, SUM(Statistics.Cases) AS 'NewestCases', SUM(Statistics.Deaths) AS 'NewestDeaths' "
-            + "        FROM (States INNER JOIN (Countries INNER JOIN Location ON Countries.ID = Location.Country) ON States.ID = Location.State) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location "
-            + "        GROUP BY Countries.Country, Dates.ID ORDER BY Dates.ID DESC "
-            + "        LIMIT 189) new "
-            + "    ON new.Country_Code = Countries.Country_Code "
-            + "WHERE NOT CUM.Country_Code IS NULL ";
+            String query = readFile("database/scripts/getDataTable.query");
 
             ResultSet results = statement.executeQuery(query);
 
             while (results.next()){
                 ArrayList<String> res = new ArrayList<>();
-                res.add(results.getString("Code"));
-                res.add(results.getString("Country"));
-                res.add(results.getString("Total Cases"));
-                res.add(results.getString("New Cases"));
-                res.add(results.getString("Total Deaths"));
-                res.add(results.getString("New Deaths"));
+                res.add(results.getString("Country_Code"));
+                res.add(results.getString("Country_Region_Name"));
+                res.add(results.getString("Cases"));
+                res.add(results.getString("newCases"));
+                res.add(results.getString("Deaths"));
+                res.add(results.getString("newDeaths"));
                 res.add(String.valueOf(results.getDouble("Deaths %") / 100.0));
                 res.add(results.getString("Population"));
                 res.add(String.valueOf(results.getDouble("Population Infected %") / 100.0));
@@ -425,6 +296,7 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
+        System.out.println("Concluded: getTableValues()\n");
 
         return table;
     }
@@ -437,24 +309,16 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String queryGetMax = "SELECT Countries.Country, Sum(Statistics.Cases) AS SumOfCases "
-            + "FROM States INNER JOIN ((Countries INNER JOIN Location ON Countries.ID = Location.Country) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location) ON States.ID = Location.State "
-            + "GROUP BY Countries.Country_Code "
-            + "ORDER BY SumOfCases DESC "
-            + "LIMIT 1";
-            String queryGetMin = "SELECT Countries.Country, Sum(Statistics.Cases) AS SumOfCases "
-            + "FROM States INNER JOIN ((Countries INNER JOIN Location ON Countries.ID = Location.Country) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location) ON States.ID = Location.State "
-            + "GROUP BY Countries.Country_Code "
-            + "ORDER BY SumOfCases ASC "
-            + "LIMIT 1";
+            String queryGetMax = "SELECT Country_Region_Name, Cases FROM getCumulative ORDER BY cases DESC LIMIT 1";
+            String queryGetMin = "SELECT Country_Region_Name, Cases FROM getCumulative ORDER BY cases ASC LIMIT 1";
 
             ResultSet result = statement.executeQuery(queryGetMax);
             result.next();
-            int max = result.getInt("SumOfCases");
+            int max = result.getInt("Cases");
 
             result = statement.executeQuery(queryGetMin);
             result.next();
-            int min = result.getInt("SumOfCases");
+            int min = result.getInt("Cases");
 
             for (int i = 0; i < values.size(); i++){
                 double cases = Double.valueOf(String.valueOf(values.get(i).get("cases")).replaceAll(",",""));
@@ -484,11 +348,9 @@ public class JDBCConnection {
         return values;
     }
 
-    public ArrayList<Map<String, Object>> getBigMap() {
+    public ArrayList<Map<String, Object>> getBigMap() throws IOException {
         ArrayList<Map<String, Object>> table = new ArrayList<>();
         Connection connection = null;
-
-        
 
         try {
             connection = DriverManager.getConnection(DATABASE);
@@ -496,40 +358,18 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String query = "SELECT CUM.Country_Code AS 'Code', cou.Country, cum.SumOfCases AS 'Total Cases', cum.SumOfDeaths AS 'Total Deaths', pop.SumOfPopulation AS 'Population', ((cum.SumOfCases) * 10000 / pop.SumOfPopulation) AS 'Population Infected %', ((cum.SumOfDeaths) * 10000 / pop.SumOfPopulation) AS 'Deaths %', new.newestcases AS 'New Cases', new.newestdeaths AS 'New Deaths' "
-            + "FROM Countries "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, Sum(Statistics.Cases) AS SumOfCases, Sum(Statistics.Deaths) AS SumOfDeaths "
-            + "        FROM States INNER JOIN ((Countries INNER JOIN Location ON Countries.ID = Location.Country) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location) ON States.ID = Location.State "
-            + "        GROUP BY Countries.Country_Code) Cum "
-            + "    ON cum.Country_Code = Countries.Country_Code "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, Sum(Location.Population) AS SumOfPopulation "
-            + "        FROM States INNER JOIN (Countries INNER JOIN Location ON Countries.ID = Location.Country) ON States.ID = Location.State "
-            + "        GROUP BY Countries.Country_Code) Pop "
-            + "    ON pop.Country_Code = Countries.Country_Code "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, Countries.Country "
-            + "        FROM Countries) Cou "
-            + "    ON cou.Country_Code = Countries.Country_Code "
-            + "LEFT JOIN ( "
-            + "        SELECT Countries.Country_Code, SUM(Statistics.Cases) AS 'NewestCases', SUM(Statistics.Deaths) AS 'NewestDeaths' "
-            + "        FROM (States INNER JOIN (Countries INNER JOIN Location ON Countries.ID = Location.Country) ON States.ID = Location.State) INNER JOIN (Dates INNER JOIN Statistics ON Dates.ID = Statistics.Date) ON Location.ID = Statistics.Location "
-            + "        GROUP BY Countries.Country, Dates.ID ORDER BY Dates.ID DESC "
-            + "        LIMIT 189) new "
-            + "    ON new.Country_Code = Countries.Country_Code "
-            + "WHERE NOT CUM.Country_Code IS NULL ";
+            String query = readFile("database/scripts/getDataTable.query");
 
             ResultSet results = statement.executeQuery(query);
 
             DecimalFormat formatter = new DecimalFormat("#,###");
             while (results.next()){
                 Map<String, Object> res = new HashMap<String, Object>();
-                res.put("id", results.getString("Code"));
-                res.put("cases", formatter.format(results.getInt("Total Cases")));
-                res.put("newCases", formatter.format(results.getInt("New Cases")));
-                res.put("deaths", formatter.format(results.getInt("Total Deaths")));
-                res.put("newDeaths", formatter.format(results.getInt("New Deaths")));
+                res.put("id", results.getString("Country_Code"));
+                res.put("cases", formatter.format(results.getInt("Cases")));
+                res.put("newCases", formatter.format(results.getInt("newCases")));
+                res.put("deaths", formatter.format(results.getInt("Deaths")));
+                res.put("newDeaths", formatter.format(results.getInt("newDeaths")));
                 res.put("deathsPercentage", String.valueOf(results.getDouble("Deaths %") / 100.0));
                 res.put("population", formatter.format(results.getInt("Population")));
                 res.put("populationpercentage", String.valueOf(results.getDouble("Population Infected %") / 100.0));
@@ -557,5 +397,42 @@ public class JDBCConnection {
         }
 
         return table;
+    }
+
+    public Map<String, Object> getFastestSpreading() throws IOException {
+        Map<String, Object> res = new HashMap<String, Object>();
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            String query = "SELECT * FROM getMostRecent ORDER BY NewCases Desc LIMIT 1;";
+
+            ResultSet results = statement.executeQuery(query);
+                
+            res.put("Country_Region_Name", results.getString("Country_Region_Name"));
+            res.put("Country_Region_Name", results.getString("Country_Region_Name"));
+
+            statement.close();
+        
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return res;
     }
 }

@@ -1,0 +1,249 @@
+ID	Location	Alpha-2 code
+1	Afghanistan	AF
+2	Albania	AL
+3	Algeria	DZ
+4	Samoa	AS
+5	Andorra	AD
+6	Angola	AO
+7	Anguilla	AI
+8	Antigua and Barbuda	AG
+9	Argentina	AR
+10	Armenia	AM
+11	Aruba	AW
+12	Australia	AU
+13	Austria	AT
+14	Azerbaijan	AZ
+15	Bahamas	BS
+16	Bahrain	BH
+17	Bangladesh	BD
+18	Barbados	BB
+19	Belarus	BY
+20	Belgium	BE
+21	Belize	BZ
+22	Benin	BJ
+23	Bermuda	BM
+24	Bhutan	BT
+25	Bolivia	BO
+26	"Bonaire, Sint Eustatius and Saba"	BQ
+27	Bosnia and Herzegovina	BA
+28	Botswana	BW
+29	Brazil	BR
+30	British Indian Ocean Territory (the)	IO
+31	Brunei	BN
+32	Bulgaria	BG
+33	Burkina Faso	BF
+34	Burundi	BI
+35	Cabo Verde	CV
+36	Cambodia	KH
+37	Cameroon	CM
+38	Canada	CA
+39	Cayman Islands	KY
+40	Central African Republic	CF
+41	Chad	TD
+42	Chile	CL
+43	China	CN
+44	Christmas Island	CX
+45	Cocos (Keeling) Islands (the)	CC
+46	Colombia	CO
+47	Comoros	KM
+48	Congo (Brazzaville)	CD
+49	Congo (Kinshasa)	CG
+50	Cook Islands	CK
+51	Costa Rica	CR
+52	Croatia	HR
+53	Cuba	CU
+54	Curacao	CW
+55	Cyprus	CY
+56	Czechia	CZ
+57	Cote d'Ivoire	CI
+58	Denmark	DK
+59	Djibouti	DJ
+60	Dominica	DM
+61	Dominican Republic	DO
+62	Ecuador	EC
+63	Egypt	EG
+64	El Salvador	SV
+65	Equatorial Guinea	GQ
+66	Eritrea	ER
+67	Estonia	EE
+68	Eswatini	SZ
+69	Ethiopia	ET
+70	Falkland Islands (Malvinas)	FK
+71	Faroe Islands	FO
+72	Fiji	FJ
+73	Finland	FI
+74	France	FR
+75	French Guiana	GF
+76	French Polynesia	PF
+77	French Southern Territories	TF
+78	Gabon	GA
+79	Gambia	GM
+80	Georgia	GE
+81	Germany	DE
+82	Ghana	GH
+83	Gibraltar	GI
+84	Greece	GR
+85	Greenland	GL
+86	Grenada	GD
+87	Guadeloupe	GP
+88	Guam	GU
+89	Guatemala	GT
+90	Guernsey	GG
+91	Guinea	GN
+92	Guinea-Bissau	GW
+93	Guyana	GY
+94	Haiti	HT
+95	Heard Island and McDonald Islands	HM
+96	Holy See	VA
+97	Honduras	HN
+98	Hong Kong	HK
+99	Hungary	HU
+100	Iceland	IS
+101	India	IN
+102	Indonesia	ID
+103	Iran	IR
+104	Iraq	IQ
+105	Ireland	IE
+106	Isle of Man	IM
+107	Israel	IL
+108	Italy	IT
+109	Jamaica	JM
+110	Japan	JP
+111	Jersey	JE
+112	Jordan	JO
+113	Kazakhstan	KZ
+114	Kenya	KE
+115	Kiribati	KI
+116	Korea (the Democratic People's Republic of)	KP
+117	Kosovo	XK
+118	"Korea, South"	KR
+119	Kuwait	KW
+120	Kyrgyzstan	KG
+121	Laos	LA
+122	Latvia	LV
+123	Lebanon	LB
+124	Lesotho	LS
+125	Liberia	LR
+126	Libya	LY
+127	Liechtenstein	LI
+128	Lithuania	LT
+129	Luxembourg	LU
+130	Macao	MO
+131	Madagascar	MG
+132	Malawi	MW
+133	Malaysia	MY
+134	Maldives	MV
+135	Mali	ML
+136	Malta	MT
+137	Marshall Islands	MH
+138	Martinique	MQ
+139	Mauritania	MR
+140	Mauritius	MU
+141	Mayotte	YT
+142	Mexico	MX
+143	Micronesia	FM
+144	Moldova	MD
+145	Monaco	MC
+146	Mongolia	MN
+147	Montenegro	ME
+148	Montserrat	MS
+149	Morocco	MA
+150	Mozambique	MZ
+151	Burma	MM
+152	Namibia	NA
+153	Nauru	NR
+154	Nepal	NP
+155	Netherlands	NL
+156	New Caledonia	NC
+157	New Zealand	NZ
+158	Nicaragua	NI
+159	Niger	NE
+160	Nigeria	NG
+161	Niue	NU
+162	Norfolk Island	NF
+163	Northern Mariana Islands (the)	MP
+164	Norway	NO
+165	Oman	OM
+166	Pakistan	PK
+167	Palau	PW
+168	West Bank and Gaza	PS
+169	Panama	PA
+170	Papua New Guinea	PG
+171	Paraguay	PY
+172	Peru	PE
+173	Philippines	PH
+174	Pitcairn	PN
+175	Poland	PL
+176	Portugal	PT
+177	Puerto Rico	PR
+178	Qatar	QA
+179	North Macedonia	MK
+180	Romania	RO
+181	Russia	RU
+182	Rwanda	RW
+183	Reunion	RE
+184	Saint Barthelemy	BL
+185	"Saint Helena, Ascension and Tristan da Cunha"	SH
+186	Saint Kitts and Nevis	KN
+187	Saint Lucia	LC
+188	Saint Martin	MF
+189	Saint Pierre and Miquelon	PM
+190	Saint Vincent and the Grenadines	VC
+191	Samoa	WS
+192	San Marino	SM
+193	Sao Tome and Principe	ST
+194	Saudi Arabia	SA
+195	Senegal	SN
+196	Serbia	RS
+197	Seychelles	SC
+198	Sierra Leone	SL
+199	Singapore	SG
+200	Sint Maarten	SX
+201	Slovakia	SK
+202	Slovenia	SI
+203	Solomon Islands	SB
+204	Somalia	SO
+205	South Africa	ZA
+206	South Georgia and the South Sandwich Islands	GS
+207	South Sudan	SS
+208	Spain	ES
+209	Sri Lanka	LK
+210	Sudan	SD
+211	Suriname	SR
+212	Svalbard and Jan Mayen	SJ
+213	Sweden	SE
+214	Switzerland	CH
+215	Syria	SY
+216	Taiwan*	TW
+217	Tajikistan	TJ
+218	Tanzania	TZ
+219	Thailand	TH
+220	Timor-Leste	TL
+221	Togo	TG
+222	Tokelau	TK
+223	Tonga	TO
+224	Trinidad and Tobago	TT
+225	Tunisia	TN
+226	Turkey	TR
+227	Turkmenistan	TM
+228	Turks and Caicos Islands	TC
+229	Tuvalu	TV
+230	Uganda	UG
+231	Ukraine	UA
+232	United Arab Emirates	AE
+233	United Kingdom	GB
+234	United States Minor Outlying Islands	UM
+235	US	US
+236	Uruguay	UY
+237	Uzbekistan	UZ
+238	Vanuatu	VU
+239	Venezuela	VE
+240	Vietnam	VN
+241	British Virgin Islands	VG
+242	Virgin Islands	VI
+243	Wallis and Futuna	WF
+244	Western Sahara	EH
+245	Yemen	YE
+246	Zambia	ZM
+247	Zimbabwe	ZW
+248	Aland Islands	AX

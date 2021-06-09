@@ -27,13 +27,21 @@ public class Overview implements Handler{
         if (countryCode == null) {
             countryCode = "AU";
         }
-
-        // If NOT NULL, then lookup the movie by type!
+        String countryCode2 = context.formParam("country2");
+        if (countryCode2 == null) {
+            countryCode2 = "AU";
+        }
+        
         model.put("country", countryCode);
+        model.put("country2", countryCode2);
 
         JDBCConnection jdbc = new JDBCConnection();
+
         Map<String, Object> cumData = jdbc.getCumulative(countryCode);
         Map<String, Object> mostRecent = jdbc.getMostRecent(countryCode);
+        Map<String, Object> cumData2 = jdbc.getCumulative(countryCode2);
+        Map<String, Object> mostRecent2 = jdbc.getMostRecent(countryCode2);
+
         Map<String, Object> wwCumData = jdbc.getCumulative();
         ArrayList<ArrayList<String>> table = jdbc.getTableValues();
         ArrayList<Map<String, Object>> heatMap = jdbc.getHeatMap();
@@ -44,6 +52,14 @@ public class Overview implements Handler{
         for (int i = 0; i < mostRecent.size(); i++){
             model.put(mostRecent.keySet().toArray()[i].toString(), mostRecent.values().toArray()[i]);
         }
+
+        for (int i = 0; i < cumData2.size(); i++){
+            model.put(cumData2.keySet().toArray()[i].toString() + "2", cumData2.values().toArray()[i]);
+        }
+        for (int i = 0; i < mostRecent2.size(); i++){
+            model.put(mostRecent2.keySet().toArray()[i].toString() + "2", mostRecent2.values().toArray()[i]);
+        }
+
         for (int i = 0; i < wwCumData.size(); i++){
             model.put(wwCumData.keySet().toArray()[i].toString(), wwCumData.values().toArray()[i]);
         }

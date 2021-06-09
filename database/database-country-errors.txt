@@ -1,0 +1,12 @@
+New Caledonia - Is both a country and a subregion of a country.
+Taiwan - Typo in database
+North Korea - ???
+Turkmenistan - Missing from data
+Western Sahara - Missing from data
+Svalbard and Jan Mayen
+Puerto Rico - Is both a country and a subregion of a country.
+French Guiana - Is both a country and a subregion of a country.
+Falkland Islands - ???
+South Georgia and the South Sandwich Islands - Is both a country and a subregion of a country.
+Reunion - Is both a country and a subregion of a country.
+Greenland - Is both a country and a subregion of a country.

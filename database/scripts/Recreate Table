@@ -1,0 +1,14 @@
+SELECT tCR.Country_Region_Name, tSP.State_Province_Name, tL.Latitude, tL.Longitude, tL.Population, tD.Date, tID.Infections, tID.Deaths
+FROM Infections_Deaths tID
+
+LEFT JOIN Dates tD
+    ON tD.ID = tID.Date_ID
+    
+LEFT JOIN Locations tL
+    ON tL.ID = tID.Location_ID
+    
+LEFT JOIN States_Provinces tSP
+    ON tSP.ID = tL.State_Province_ID
+
+LEFT JOIN Countries_Regions tCR
+    ON tCR.ID = tL.Country_Region_ID

@@ -1,23 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   <title>Thymeleaf Example - Homepage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Covid-19 Database Website</title>
 
-   <link rel="stylesheet" type="text/css" href="common.css" />
+    <link rel="stylesheet" href="assets/css/flags.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
 </head>
-<body>
-   <img src='logo.png' height='200px'/>
-   <h1>Homepage</h1>
-   <p>Links to queries on different web pages</p>
-   <ul>
-       <li>
-           <a href='movies.html'>List all Movies</a>
-       </li>
-       <li>
-           <a href='moviestype.html'>Get Movies by Type</a>
-       </li>
-   </ul>
 
+<body style="background-color: #F7F8FC; overflow-x:hidden;">
+    <header style="padding: 20px 0px;background-color: white;">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-md-4">
+                    <div class="row justify-content-left align-items-center no-gutters" style="text-align: center;">
+                        <a href="/">
+                            <div class="col-sm-4">
+                                <!-- Start: Navbar Logo --><img id="logo" src="assets/img/Logo.webp" width=96>
+                                <!-- End: Navbar Logo -->
+                            </div>
+                            <div class="col-sm-5">
+                                <h1
+                                    style="font-family: 'Fira Sans', sans-serif;font-style: italic;font-size:48px;color:#333;">
+                                    COVIDDB</h1>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-7" style="font-family: Nunito, sans-serif;">
+                    <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </header>
+    <!-- Start: Content -->
+    <section style="margin-top: 24px;">
+        <div class="container">
+            
+            <h1 style="font-family: 'Fira Sans', sans-serif; text-transform: uppercase; font-size: 36px">Covid-19 Key Statistics</h1>
+            <!-- Start: Left-Hand Panel Wrapper -->
+            <div class="col-xl-12">
+                <!-- Start: Stat Cards -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <!-- Start: Card Set -->
+                        <div class="row no-gutters">
+                            <!-- Start: Card Wrapper -->
+                            <div class="col-xl-6">
+                                <!-- Start: Statistic Card -->
+                                <div class="stat-card">
+                                    <div class="row">
+                                        <!-- Start: Card Icon Side -->
+                                        <div class="col-4"><img src="assets/img/Logo.min.webp" width=104></div>
+                                        <!-- End: Card Icon Side -->
+                                        <!-- Start: Card Info Side -->
+                                        <div class="col-8">
+                                            <h6 style="font-family: Nunito, sans-serif;font-size: 24px;">Coronavirus
+                                                Cases</h6>
+                                            <h5 style="font-family: 'Fira Sans', sans-serif;font-weight: 600;font-style: normal;font-size: 52px;"
+                                                th:text="${wwCumCases}"></h5>
+                                        </div>
+                                        <!-- End: Card Info Side -->
+                                    </div>
+                                </div>
+                                <!-- End: Statistic Card -->
+                            </div>
+                            <!-- End: Card Wrapper -->
+                            
+                            <!-- Start: Card Wrapper -->
+                            <div class="col-xl-6">
+                                <!-- Start: Statistic Card -->
+                                <div class="stat-card">
+                                    <div class="row">
+                                        <!-- Start: Card Icon Side -->
+                                        <div class="col-4"><img src="assets/img/Logo Black.min.webp" width=104></div>
+                                        <!-- End: Card Icon Side -->
+                                        <!-- Start: Card Info Side -->
+                                        <div class="col-8">
+                                            <h6 style="font-family: Nunito, sans-serif;font-size: 24px;">Total
+                                                Deaths</h6>
+                                            <h5 style="font-family: 'Fira Sans', sans-serif;font-weight: 600;font-style: normal;font-size: 52px;"
+                                                th:text="${wwCumDeaths}"></h5>
+                                        </div>
+                                        <!-- End: Card Info Side -->
+                                    </div>
+                                </div>
+                                <!-- End: Statistic Card -->
+                            </div>
+                            <!-- End: Card Wrapper -->
+                        </div>
+                        <!-- End: Card Set -->
+                    </div>
+                </div>
+                <!-- End: Stat Cards -->
+            </div>
+            <!-- End: Left-Hand Panel Wrapper -->
+            <!-- Start: Right Hand Panel Wrapper -->
+
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </body>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.flagstrap.js"></script>
+<script>
+    $('#demo').flagStrap({
+        onSelect: function (value, element) {
+            document.getElementById("country_selection").submit()
+        }
+
+    });
+    $('#demo2').flagStrap({
+        onSelect: function (value, element) {
+            document.getElementById("country_selection").submit()
+        }
+
+    });
+</script>
+
+<script src="assets/js/bootstrap-sortable.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
+
 </html>

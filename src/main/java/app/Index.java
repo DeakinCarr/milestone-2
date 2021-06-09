@@ -30,8 +30,15 @@ public class Index implements Handler {
         // In this example the model will remain empty
         Map<String, Object> model = new HashMap<String, Object>();
 
-        // DO NOT MODIFY THIS
-        // Makes Javalin render the webpage using Thymeleaf
+        JDBCConnection jdbc = new JDBCConnection();
+        Map<String, Object> wwCumData = jdbc.getCumulative();
+
+        String query = "SELECT * FROM getMostRecent ORDER BY NewCases Desc LIMIT 1;";
+
+        for (int i = 0; i < wwCumData.size(); i++){
+            model.put(wwCumData.keySet().toArray()[i].toString(), wwCumData.values().toArray()[i]);
+        }
+
         context.render(TEMPLATE, model);
     }
 
