@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
-    
     <link rel="stylesheet" href="assets/css/flags.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
@@ -13,10 +12,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/mystyle.css" />
 
 </head>
 
-<body style="background-color: #F7F8FC;">
+<body style="background-color: #F7F8FC;size: 100%">
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -24,11 +24,11 @@
                 <div class="col-md-4">
                     <div class="row justify-content-left align-items-center no-gutters" style="text-align: center;">
                         <a href="/">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" style="float: left;">
                                 <!-- Start: Navbar Logo --><img id="logo" src="assets/img/Logo.webp" width=96>
                                 <!-- End: Navbar Logo -->
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-5" style="float: left; padding-top: 25px;">
                                 <h1 style="font-family: 'Fira Sans', sans-serif;font-style: italic;font-size:48px;color:#333;">COVIDDB</h1>
                             </div>
                         </a>
@@ -38,9 +38,9 @@
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/overview">Overview</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="/map">World Map</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
                     </ul>
                 </div>
 
@@ -48,42 +48,32 @@
             </div>
         </div>
     </header>
-    <!-- Start: Content -->
-    <section style="overflow:hidden">
-            <div class="row no-gutters"> <!-- Table -->
-                <div class="col-xl-2 col-lg-3 col-md-5 col-sm-12">
-                    <div id="info">
-                        <h1 style="font-family: 'Fira Sans', sans-serif;"><span id="country-name">Select a country</span><span id="flag"></span></h1>
-                        <div class="divider">
-                            <h6 class="title">Total Cases</h6>
-                            <h4 class="stat" id="total-cases">..............</h4>
-                        </div>
-                        <div class="divider">
-                            <h6 class="title">Last 24 Hours</h6>
-                            <h4 class="stat" id="total-cases-last-24-hours">..............</h4>
-                        </div>
-                        <div class="divider">
-                            <h6 class="title">Deaths (<span id="total-deaths-percentage">.....%</span>)</h6>
-                            <h4 class="stat" id="total-deaths">..............</h4>
-                        </div>
-                        <div class="divider">
-                            <h6 class="title">New Deaths</h6>
-                            <h4 class="stat" id="total-deaths-last-24-hours">..............</h4>
-                        </div>
-                        <div class="divider" style="border-bottom: none;">
-                            <h6 class="title">Population (<span id="total-recovered-percentage">.....%</span>)</h6>
-                            <h4 class="stat" id="total-recovered">..............</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-10 col-lg-9 col-md-7 col-sm-12">
-                    <div id="bigMap"></div>
-                </div>
+    <div>
+        <h3 style="font-family: 'Fira Sans', sans-serif; font-size: 52px; text-align: center;">Key Facts</h3>
+    </div>
+    
+    <div id = "factsblock">
+        <div class = "fact">
+            <h1>#1</h1>
+            <h2>The total number of Covid-19 deaths worldwide</h2>
+            <div class = "factnum">
+                <h1><span  th:text="${deathsTot}"></span></h1>
             </div>
-    </section>
-    <!-- End: Content -->
-    <!-- Start: Footer Basic -->
-    <div class="footer-basic">
+        </div>
+        <div class = "fact">
+            <h1>#2</h1>
+            <h2>The total number of Covid-19 confirmed cases worldwide</h2>
+            <div class = "factnum">
+                <h1><span th:text="${infectionsTot}"></span></h1>
+            </div>
+        </div>
+        <div class = "fact">
+            <h1>#3</h1>
+            <h2>Of the 10 highest days of infection, 7 were within the last month</h2>
+            <div class = "factnum"><h1 style="opacity: 0">well well well</h1></div>
+        </div>
+    </div>
+    <div class="footer-basic" style="clear: both; position: relative; height: 200px; margin-top: -200px;">
         <footer>
             <!-- Start: Social Icons -->
             <div class="social"><a href="https://www.instagram.com/rmituniversity/"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com/school/rmit-university"><i class="icon ion-social-linkedin"></i></a><a href="https://twitter.com/RMIT"><i class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com/RMITuniversity/"><i class="icon ion-social-facebook"></i></a></div>
@@ -101,29 +91,5 @@
             <!-- Start: Copyright -->
         </footer>
     </div>
-    <!-- End: Footer Basic -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.flagstrap.js"></script>
-<script>$('#demo').flagStrap();</script>
-
-
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="assets/js/maps/amchartsbigmap.js"></script>
-
-<script th:inline="javascript">
-polygonSeries.data = [[${mapVals}]];
-</script>
-
-<script src="assets/js/bootstrap-sortable.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
-
 </html>

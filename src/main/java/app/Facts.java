@@ -16,13 +16,13 @@ import io.javalin.http.Handler;
  * @author Timothy Wiley, 2021. email: timothy.wiley@rmit.edu.au
  * @author Santha Sumanasekara, 2021. email: santha.sumanasekara@rmit.edu.au
  */
-public class Index implements Handler {
+public class Facts implements Handler {
 
     // URL of this page relative to http://localhost:7000/
-    public static final String URL = "/home";
+    public static final String URL = "/facts";
 
     // Name of the Thymeleaf HTML template page in the resources folder
-    private static final String TEMPLATE = ("index.html");
+    private static final String TEMPLATE = ("Facts.html");
 
     @Override
     public void handle(Context context) throws Exception {
@@ -30,15 +30,17 @@ public class Index implements Handler {
         // In this example the model will remain empty
         Map<String, Object> model = new HashMap<String, Object>();
 
-        JDBCConnection jdbc = new JDBCConnection();
-        Map<String, Object> wwCumData = jdbc.getCumulative();
+        
+        JDBCConnection2 jdbc2 = new JDBCConnection2();
+        
+        int infectionsTot = jdbc2.getInfectionsTot();
+        model.put("infectionsTot", infectionsTot);
+        int deathsTot = jdbc2.getDeathsTot();
+        model.put("deathsTot", deathsTot);
+        
 
-        String query = "SELECT * FROM getMostRecent ORDER BY NewCases Desc LIMIT 1;";
-
-        for (int i = 0; i < wwCumData.size(); i++){
-            model.put(wwCumData.keySet().toArray()[i].toString(), wwCumData.values().toArray()[i]);
-        }
-
+        // DO NOT MODIFY THIS
+        // Makes Javalin render the webpage using Thymeleaf
         context.render(TEMPLATE, model);
     }
 

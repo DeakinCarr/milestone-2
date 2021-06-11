@@ -1,0 +1,61 @@
+.fact {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+    float: left;
+    background-color: #ffffff;
+    border-radius: 25px;
+    border: 8px solid rgb(245, 138, 151);
+    padding: 2em;
+    width: 25%;
+    height: 325px;
+    margin: 3em;
+    position: relative;
+}
+#factsblock {
+    margin: auto;
+    width: 100%;
+    font-family: 'Fira Sans', sans-serif;
+}
+.factnum {
+    font-family: Nunito, sans-serif;
+    margin: 0;
+    /* position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    top: 70%;
+    transform: translate(-50%, -5%); */
+    font-size: 34px;
+    font-weight: 550;
+}
+#hpbackground {
+    background-color: #F7F8FC;
+    width: 100%;
+}
+.homepagelayout {
+    text-align: center;
+    font-family: 'Fira Sans', sans-serif;
+    width: 45%;
+    height: 300px;
+    background-color: rgb(245, 138, 151);
+    float: left;
+    margin: 2%;
+    border-radius: 15px;
+    padding: 2px;
+}
+a:active {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+a:link {
+    color: black;
+}
+a:hover {
+    color: grey;
+}
+
+/* width: 300px;
+height: 450px;
+margin: 5px; */

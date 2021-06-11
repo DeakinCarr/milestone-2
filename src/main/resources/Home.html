@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
-    
     <link rel="stylesheet" href="assets/css/flags.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
@@ -13,10 +12,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/mystyle.css" />
 
 </head>
 
-<body style="background-color: #F7F8FC;">
+<body style="background-color: #F7F8FC;size: 100%">
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -24,11 +24,11 @@
                 <div class="col-md-4">
                     <div class="row justify-content-left align-items-center no-gutters" style="text-align: center;">
                         <a href="/">
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" style="float: left;">
                                 <!-- Start: Navbar Logo --><img id="logo" src="assets/img/Logo.webp" width=96>
                                 <!-- End: Navbar Logo -->
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-5" style="float: left; padding-top: 25px;">
                                 <h1 style="font-family: 'Fira Sans', sans-serif;font-style: italic;font-size:48px;color:#333;">COVIDDB</h1>
                             </div>
                         </a>
@@ -36,11 +36,11 @@
                 </div>
                 <div class="col-md-7" style="font-family: Nunito, sans-serif;">
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/overview">Overview</a></li>
                         <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="/map">World Map</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
                     </ul>
                 </div>
 
@@ -48,41 +48,34 @@
             </div>
         </div>
     </header>
-    <!-- Start: Content -->
-    <section style="overflow:hidden">
-            <div class="row no-gutters"> <!-- Table -->
-                <div class="col-xl-2 col-lg-3 col-md-5 col-sm-12">
-                    <div id="info">
-                        <h1 style="font-family: 'Fira Sans', sans-serif;"><span id="country-name">Select a country</span><span id="flag"></span></h1>
-                        <div class="divider">
-                            <h6 class="title">Total Cases</h6>
-                            <h4 class="stat" id="total-cases">..............</h4>
-                        </div>
-                        <div class="divider">
-                            <h6 class="title">Last 24 Hours</h6>
-                            <h4 class="stat" id="total-cases-last-24-hours">..............</h4>
-                        </div>
-                        <div class="divider">
-                            <h6 class="title">Deaths (<span id="total-deaths-percentage">.....%</span>)</h6>
-                            <h4 class="stat" id="total-deaths">..............</h4>
-                        </div>
-                        <div class="divider">
-                            <h6 class="title">New Deaths</h6>
-                            <h4 class="stat" id="total-deaths-last-24-hours">..............</h4>
-                        </div>
-                        <div class="divider" style="border-bottom: none;">
-                            <h6 class="title">Population (<span id="total-recovered-percentage">.....%</span>)</h6>
-                            <h4 class="stat" id="total-recovered">..............</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-10 col-lg-9 col-md-7 col-sm-12">
-                    <div id="bigMap"></div>
-                </div>
-            </div>
-    </section>
-    <!-- End: Content -->
-    <!-- Start: Footer Basic -->
+
+    <!-- Place content here -->
+    <div id="#hpbackground">
+        <div class="homepagelayout">
+            <h2 style="z-index: 20;">What can I do here?</h2>
+            <p style="font-size: 1.25em; position: relative; top: 20px; z-index: 20;">On the COVIDDB website you are able to find data related to infection and death rates across the globe. The information is
+               displayed on both a global and regional scale with up to date and easy to find results.
+            </p>
+            <p class="a" style="font-size: 1.5em; position: relative; bottom: -50px; z-index: 20;"><b><a href="http://localhost:7000/overview" target="Overview">Click here to learn more</a></b></p>
+        </div>
+        <div class="homepagelayout">
+            <h2 style="z-index: 20;">Who is this for?</h2>
+            <p style="font-size: 1.25em; position: relative; top: 20px; z-index: 20;">The COVIDDB website is designed for a wide user group looking to further their own knowledge about the ongoing pandemic. 
+                Primarily it is designed with needs of three main user groups in mind.</p>
+                <ol style="text-align: left; position: relative; bottom: -30px; z-index: 20;">
+                    <li>People looking for quick up to date facts about the ongoing pandemic</li>
+                    <li>People looking for information in different countries or regions</li>
+                    <li>Officials looking to inform themselves deeper on the overall and longterm impacts of the pandemic</li>
+                </ol>
+        </div>
+    </div>
+    <div style="text-align: center; background-color: #F7F8FC; width: 100%; height: 650px; margin: 0%; padding: 0%; z-index: -10;">
+            <p style="position: relative; right: 15%; top: 20%; font-size: 2em;">World Map view click here -></p>
+            <a href="http://localhost:7000/map">
+            <img src="assets/img/Map.PNG" width=1570 style="width: 550px; height:260px; position: relative; right: -23%; bottom: 10%; border: 5px solid grey; border-style: dashed;">
+        </a>
+    </div>
+
     <div class="footer-basic">
         <footer>
             <!-- Start: Social Icons -->
@@ -101,29 +94,6 @@
             <!-- Start: Copyright -->
         </footer>
     </div>
-    <!-- End: Footer Basic -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.flagstrap.js"></script>
-<script>$('#demo').flagStrap();</script>
-
-
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="assets/js/maps/amchartsbigmap.js"></script>
-
-<script th:inline="javascript">
-polygonSeries.data = [[${mapVals}]];
-</script>
-
-<script src="assets/js/bootstrap-sortable.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
-
 </html>
+

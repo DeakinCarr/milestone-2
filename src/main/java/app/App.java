@@ -42,6 +42,8 @@ public class App {
         app.get(MoviesType.URL, new MoviesType()); 
         app.get(Overview.URL, new Overview());
         app.get(BigMap.URL, new BigMap());
+        app.get(Facts.URL, new Facts());
+        app.get(Home.URL, new Home());
 
         // POST pages can accept form data
         app.post(MoviesType.URL, new MoviesType());

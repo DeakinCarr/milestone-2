@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
+
 </head>
 
 <body style="background-color: #F7F8FC; overflow-x:hidden;">
@@ -38,8 +39,8 @@
                 </div>
                 <div class="col-md-7" style="font-family: Nunito, sans-serif;">
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="/overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/overview">Overview</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Nav Item</a></li>
                         <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
@@ -53,93 +54,453 @@
     <!-- Start: Content -->
     <section style="margin-top: 24px;">
         <div class="container">
-            
-            <h1 style="font-family: 'Fira Sans', sans-serif; text-transform: uppercase; font-size: 36px">Covid-19 Key Statistics</h1>
-            <!-- Start: Left-Hand Panel Wrapper -->
-            <div class="col-xl-12">
-                <!-- Start: Stat Cards -->
-                <div class="row">
-                    <div class="col-xl-12">
-                        <!-- Start: Card Set -->
-                        <div class="row no-gutters">
-                            <!-- Start: Card Wrapper -->
-                            <div class="col-xl-6">
-                                <!-- Start: Statistic Card -->
-                                <div class="stat-card">
-                                    <div class="row">
-                                        <!-- Start: Card Icon Side -->
-                                        <div class="col-4"><img src="assets/img/Logo.min.webp" width=104></div>
-                                        <!-- End: Card Icon Side -->
-                                        <!-- Start: Card Info Side -->
-                                        <div class="col-8">
-                                            <h6 style="font-family: Nunito, sans-serif;font-size: 24px;">Coronavirus
-                                                Cases</h6>
-                                            <h5 style="font-family: 'Fira Sans', sans-serif;font-weight: 600;font-style: normal;font-size: 52px;"
-                                                th:text="${wwCumCases}"></h5>
-                                        </div>
-                                        <!-- End: Card Info Side -->
-                                    </div>
-                                </div>
-                                <!-- End: Statistic Card -->
-                            </div>
-                            <!-- End: Card Wrapper -->
-                            
-                            <!-- Start: Card Wrapper -->
-                            <div class="col-xl-6">
-                                <!-- Start: Statistic Card -->
-                                <div class="stat-card">
-                                    <div class="row">
-                                        <!-- Start: Card Icon Side -->
-                                        <div class="col-4"><img src="assets/img/Logo Black.min.webp" width=104></div>
-                                        <!-- End: Card Icon Side -->
-                                        <!-- Start: Card Info Side -->
-                                        <div class="col-8">
-                                            <h6 style="font-family: Nunito, sans-serif;font-size: 24px;">Total
-                                                Deaths</h6>
-                                            <h5 style="font-family: 'Fira Sans', sans-serif;font-weight: 600;font-style: normal;font-size: 52px;"
-                                                th:text="${wwCumDeaths}"></h5>
-                                        </div>
-                                        <!-- End: Card Info Side -->
-                                    </div>
-                                </div>
-                                <!-- End: Statistic Card -->
-                            </div>
-                            <!-- End: Card Wrapper -->
+            <div class="row flex-column">
+                <div class="col-xl-10 mx-auto">
+                    <div class="hero-content text-center">
+                        <h1 style="font-family: 'Nunito', sans-serif; font-weight:600">
+                            Keep yourself at your home quarantine <br>
+                            <span class="text-primary">Stay Home, Stay Safe.</span>
+                        </h1>
+                        <div class="buttons">
+                            <a href="#prevention" class="hero-button" data-scroll="">COVID-19 Prevention</a>
+                            <a href="#symptoms" class="hero-button" style="background-color: #ff4f7b;"
+                                data-scroll="">COVID-19 Symtoms</a>
                         </div>
-                        <!-- End: Card Set -->
                     </div>
                 </div>
-                <!-- End: Stat Cards -->
+                <div class="col-lg-10 mx-auto">
+                    <div class="hero-img">
+                        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_wdXBRc.json"
+                            background="transparent" speed="1" loop="" autoplay="">
+                        </lottie-player>
+                    </div>
+                </div>
             </div>
-            <!-- End: Left-Hand Panel Wrapper -->
-            <!-- Start: Right Hand Panel Wrapper -->
-
+            <div class="row">
+                <div class="col" id="landing-info">
+                    <div class="row">
+                        <div class="col">
+                            <h3 style="font-weight: 600;">COVID-19 CORONAVIRUS PANDEMIC</h3>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="infobox col-3">
+                            <h3>175,159,153</h3>
+                            <h4>Total Cases</h4>
+                        </div>
+                        <div class="infobox col-3">
+                            <h3>175,159,153</h3>
+                            <h4>Total Cases</h4>
+                        </div>
+                        <div class="infobox col-3">
+                            <h3>175,159,153</h3>
+                            <h4>Total Cases</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="#">
+                                <h4 class="text-primary link">View Data Dashboard
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    <section style="background-color: white; min-height: 600px;">
+        <section class="about-covid-section pt-lg" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-xl-6">
+                        <div class="about-covid">
+                            <div class="section-header">
+                                <p class="subheading">About Covid-19</p>
+                                <h2 class="heading">Coronavirus disease (COVID-19)</h2>
+                            </div>
+    
+                            <p>
+                                Coronavirus disease (COVID-19) is an infectious disease caused by a newly
+                                discovered coronavirus. Most people infected with the COVID-19 will experience mild to
+                                moderate respiratory illness and recover without requiring special
+                                treatment. Older people, and those with underlying medical problems like cardiovascular
+                                disease, diabetes, chronic respiratory disease, and cancer are more likely to develop
+                                serious illness.
+                            </p>
+    
+                            <p>
+                                The best way to prevent and slow down transmission is be well informed about the COVID-19
+                                virus, the disease it causes and how it spreads. Protect yourself &amp; others from infection by
+                                washing your hands or using an alcohol based rub frequently and not touching your face.
+                            </p>
+                            <a href="#prevention" class="hero-button" data-scroll=""><ic class="icon ion-ios-flask"></i>&nbsp;How we protect?</a>
+                        </div>
+                    </div>
+                    <div class="col-md-5 offset-xl-1">
+                        <div class="about-img">
+                            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_wv4mTG.json"
+                            background="transparent" speed="1" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="covid-transmission-section py-lg" id="transmission">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 mx-auto">
+                        <div class="section-header text-center">
+                            <p class="subheading">COVID-19 Tramsmission</p>
+                            <h2 class="heading">How Coronavirus COVID-19 Spread</h2>
+                            <p>People can catch COVID-19 from others who have the virus. The disease can spread from person
+                                to person through small droplets from the nose or mouth which are spread when a person with
+                                COVID-19 coughs or exhales.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="transmission-card">
+                            <img src="assets/img/transmission/1.png" alt="" class="img-fluid">
+                            <h4>Coughs from Infected Person</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="transmission-card">
+                            <img src="assets/img/transmission/2.png" alt="" class="img-fluid">
+                            <h4>Sneezes from Infected Person</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="transmission-card">
+                            <img src="assets/img/transmission/3.png" alt="" class="img-fluid">
+                            <h4>Touching Contaminated Object or Surfaces</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="transmission-card">
+                            <img src="assets/img/transmission/4.png" alt="" class="img-fluid">
+                            <h4>Close Contact with Infected Person</h4>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="text-center mx-auto mt-5">
+                    <a href="#symptoms" class="text-primary link" data-scroll="">Check COVID-19 Symptoms</a>
+                </div>
+            </div>
+        </section>
+        
+    </section>
+    <section class="covid-symptoms-section py-lg s-bg-light" id="symptoms">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="section-header text-center">
+                        <p class="subheading">COVID-19 symptoms</p>
+                        <h2 class="heading">Coronavirus COVID-19 Symptoms</h2>
+                        <p>
+                            The most common symptoms of COVID-19 are fever, tiredness, and dry cough. Some patients may
+                            have aches and pains, nasal congestion, runny nose, sore throat or diarrhea.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-6 col-lg-4 symptom-card style-2 text-center aos-init aos-animate" data-aos="fade-up">
+                    <div class="symptom-card-inner h-100">
+                        <div class="card-img">
+                            <img src="assets/img/symptoms/1.png" alt="" class="img-fluid rounded-circle">
+                        </div>
+                        <h4>High Fever</h4>
+                        <p>
+                            According to the WHO, the most common symptoms of Covid-19 are fever. Fever is a key
+                            symptom, experts say.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 symptom-card style-2 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
+                    <div class="symptom-card-inner h-100">
+                        <div class="card-img">
+                            <img src="assets/img/symptoms/2.png" alt="" class="img-fluid rounded-circle">
+                        </div>
+                        <h4>Sore Throat</h4>
+                        <p>
+                            A scratchy sensation in the throat, pain in the throat area that becomes worse when
+                            swallowing or talking.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 symptom-card style-2 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="symptom-card-inner h-100">
+                        <div class="card-img">
+                            <img src="assets/img/symptoms/3.png" alt="" class="img-fluid rounded-circle">
+                        </div>
+                        <h4>Dry Cough</h4>
+                        <p>
+                            Basically, a dry cough is "one where no mucus or phlegm is produced with the cough, A cough
+                            that doesn’t go away.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 symptom-card style-2 text-center aos-init aos-animate" data-aos="fade-up">
+                    <div class="symptom-card-inner h-100">
+                        <div class="card-img">
+                            <img src="assets/img/symptoms/4.png" alt="" class="img-fluid rounded-circle">
+                        </div>
+                        <h4>Sneezing</h4>
+                        <p>
+                            Sneezing is very common symptom in Coronavirus patient. Sneezing (sternutation) is the act
+                            of expelling a sudden
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 symptom-card style-2 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="50">
+                    <div class="symptom-card-inner h-100">
+                        <div class="card-img">
+                            <img src="assets/img/symptoms/5.png" alt="" class="img-fluid rounded-circle">
+                        </div>
+                        <h4>Shortness of Breath</h4>
+                        <p>
+                            Commonly known as tightening in the chest, air hunger, difficulty breathing, feeling of
+                            suffocation. These symptoms.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 symptom-card style-2 text-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="symptom-card-inner h-100">
+                        <div class="card-img">
+                            <img src="assets/img/symptoms/6.png" alt="" class="img-fluid rounded-circle">
+                        </div>
+                        <h4>Vomiting</h4>
+                        <p>
+                            It’s not a regular symptoms of coronavirus patients Symptoms that occur with nausea and
+                            vomiting include: abdominal pain
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="covid-prevention-section py-lg" id="prevention">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="section-header text-center">
+                        <p class="subheading">COVID-19 Prevention</p>
+                        <h2 class="heading">Coronavirus COVID-19 Prevention</h2>
+                        <p>You can protect yourself and help prevent spreading the coronavirus (COVID-19) to others if
+                            you do all the step shown as this infographics. You can safe from coronavirus and safe other
+                            if you are affected</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-4 text-center prevention-card">
+                    <div class="prevention-card-inner">
+                        <div class="icon">
+                            <lottie-player class="mx-auto" src="https://assets1.lottiefiles.com/private_files/lf30_Rq4Htd.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                        <h4>Wash Your Hands</h4>
+                        <p>
+                            Wash your hands frequently and regularly with an alcohol based hand rub or wash them with
+                            soap and water.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 text-center prevention-card">
+                    <div class="prevention-card-inner">
+                        <div class="icon">
+                            <lottie-player class="mx-auto" src="https://assets1.lottiefiles.com/private_files/lf30_oGbdoA.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                        <h4>Wear Face Mask</h4>
+                        <p>
+                            Wear sergical mask and avoid touching face. Hands touch many surfaces and can pick up
+                            viruses once contaminated.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 text-center prevention-card">
+                    <div class="prevention-card-inner">
+                        <div class="icon">
+                            <lottie-player class="mx-auto" src="https://assets1.lottiefiles.com/private_files/lf30_QLsD8M.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                        <h4>Avoid Close Contact</h4>
+                        <p>
+                            Please maintain at least 1 metre (3 feet) distance between yourself and anyone who is
+                            coughing or sneezing.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 text-center prevention-card">
+                    <div class="prevention-card-inner">
+                        <div class="icon">
+                            <lottie-player class="mx-auto" src="https://assets9.lottiefiles.com/packages/lf20_qFttfS.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                        <h4>Stay at Home</h4>
+                        <p>
+                            Stay home, stay safe. if you feel unwell. If you have a fever, cough and difficulty
+                            breathing, seek medical attention.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 text-center prevention-card">
+                    <div class="prevention-card-inner">
+                        <div class="icon">
+                            <lottie-player class="mx-auto" src="https://assets1.lottiefiles.com/private_files/lf30_yQtj4O.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                        <h4>Use Soap or Sanitizer</h4>
+                        <p>
+                            Use alcohol based hand sanitizer or soap when you wash your hands. Keep wash yor hands at
+                            least 20 minute during handwash.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 text-center prevention-card">
+                    <div class="prevention-card-inner">
+                        <div class="icon">
+                            <lottie-player class="mx-auto" src="https://assets9.lottiefiles.com/temp/lf20_qCBn5k.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
+                            </lottie-player>
+                        </div>
+                        <h4>Keep Inform Doctors</h4>
+                        <p>
+                            If you are think you are suffering with this above symptoms. Please call a doctor as soon as
+                            posible for your medical advice.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mx-auto mt-5">
+                <a href="/map" target="_blank" class="link">
+                    Check out Coronavirus Situation Dashboard</a>
+            </div>
+        </div>
+    </section>
+    <section class="callout-section pt-md pb-lg s-bg-primary" id="contact">
+        <img src="assets/img/bg/1.jpg" alt="" class="parallax-bg" style="will-change: transform; transform: translate3d(0px, -126px, 0px); transition: transform 1.3s cubic-bezier(0, 0, 0, 1) 0s;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-11 mx-auto text-center">
+                    <div class="callout">
+                        <lottie-player class="mx-auto" src="https://assets9.lottiefiles.com/packages/lf20_nKCnOy.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop="" autoplay="">
+                        </lottie-player>
+                        <h2 class="text-light">If you think you are suffering with Coronavirus Symptoms please chat with
+                            online doctors or make an appoinment </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hand-washing-steps-section style-2 py-lg">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="section-header text-center">
+                        <p class="subheading">Hand wash process</p>
+                        <h2 class="heading">Wash your hands very often</h2>
+                        <p>
+                            You can protect yourself and help prevent spreading the coronavirus (COVID-19) to others if
+                            you do all the step shown as this infographics. You can safe from coronavirus and safe other
+                            if you are affected
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-10 mx-auto">
+                    <div class="hand-washing-steps style-2">
+                        <div class="step">
+                            <div class="img-box">
+                                <img src="assets/img/hand-wash/1.png" alt="" class="img-fluid">
+                            </div>
+                            <h5>Wet Hands</h5>
+                        </div>
+                        <div class="step">
+                            <div class="img-box">
+                                <img src="assets/img/hand-wash/2.png" alt="" class="img-fluid">
+                            </div>
+                            <h5>Apply Soap</h5>
+                        </div>
+                        <div class="step">
+                            <div class="img-box">
+                                <img src="assets/img/hand-wash/3.png" alt="" class="img-fluid">
+                            </div>
+                            <h5>Rub Hands Palm to Palm</h5>
+                        </div>
+                        <div class="step">
+                            <div class="img-box">
+                                <img src="assets/img/hand-wash/4.png" alt="" class="img-fluid">
+                            </div>
+                            <h5>Wash Between Fingers</h5>
+                        </div>
+                        <div class="step">
+                            <div class="img-box">
+                                <img src="assets/img/hand-wash/5.png" alt="" class="img-fluid">
+                            </div>
+                            <h5>Rub Wrists</h5>
+                        </div>
+                        <div class="step">
+                            <div class="img-box">
+                                <img src="assets/img/hand-wash/6.png" alt="" class="img-fluid">
+                            </div>
+                            <h5>Dry with a Single use Towel</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hand-wash-img">
+                <lottie-player class="anim-img" src="https://assets4.lottiefiles.com/private_files/lf30_kLBIzB.json" background="transparent" speed="1" loop="" autoplay="">
+                </lottie-player>
+            </div>
+        </div>
+    </section>
+    <div class="footer-basic">
+            <footer>
+                <!-- Start: Social Icons -->
+                <div class="social"><a href="https://www.instagram.com/rmituniversity/"><i
+                            class="icon ion-social-instagram"></i></a><a
+                        href="https://www.linkedin.com/school/rmit-university"><i
+                            class="icon ion-social-linkedin"></i></a><a href="https://twitter.com/RMIT"><i
+                            class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com/RMITuniversity/"><i
+                            class="icon ion-social-facebook"></i></a></div>
+                <!-- End: Social Icons -->
+                <!-- Start: Links -->
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="/">Home</a></li>
+                    <li class="list-inline-item"><a href="/overview">Overview</a></li>
+                    <li class="list-inline-item"><a href="#">About</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="/map">World Map</a></li>
+                </ul>
+                <!-- End: Links -->
+                <p class="copyright">Made with &#10084;&#65039; by Deakin Carr & Max Cantwell</p>
+                <!-- Start: Copyright -->
+            </footer>
+        </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </body>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.flagstrap.js"></script>
-<script>
-    $('#demo').flagStrap({
-        onSelect: function (value, element) {
-            document.getElementById("country_selection").submit()
-        }
-
-    });
-    $('#demo2').flagStrap({
-        onSelect: function (value, element) {
-            document.getElementById("country_selection").submit()
-        }
-
-    });
-</script>
 
 <script src="assets/js/bootstrap-sortable.js"></script>
 <script src="assets/js/moment.min.js"></script>
 <link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
+
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 </html>
