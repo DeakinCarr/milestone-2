@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
+
     <link rel="stylesheet" href="assets/css/flags.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
@@ -12,11 +13,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/mystyle.css" />
 
 </head>
 
-<body style="background-color: #F7F8FC;size: 100%">
+<body style="background-color: #F7F8FC; overflow-x:hidden;">
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -39,9 +39,9 @@
                 <div class="col-md-7" style="font-family: Nunito, sans-serif;">
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="/facts">Facts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="/countries">Countries</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/states">States</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/states">States</a></li>
                         <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
                     </ul>
                 </div>
@@ -50,32 +50,11 @@
             </div>
         </div>
     </header>
-    <div>
-        <h3 style="font-family: 'Fira Sans', sans-serif; font-size: 52px; text-align: center;">Key Facts</h3>
-    </div>
-    
-    <div id = "factsblock">
-        <div class = "fact">
-            <h1>#1</h1>
-            <h2>The total number of Covid-19 deaths worldwide</h2>
-            <div class = "factnum">
-                <h1><span  th:text="${deathsTot}"></span></h1>
-            </div>
-        </div>
-        <div class = "fact">
-            <h1>#2</h1>
-            <h2>The total number of Covid-19 confirmed cases worldwide</h2>
-            <div class = "factnum">
-                <h1><span th:text="${infectionsTot}"></span></h1>
-            </div>
-        </div>
-        <div class = "fact">
-            <h1>#3</h1>
-            <h2>Of the 10 highest days of infection, 7 were within the last month</h2>
-            <div class = "factnum"><h1 style="opacity: 0">well well well</h1></div>
-        </div>
-    </div>
-    <div class="footer-basic" style="clear: both; position: relative; height: 200px; margin-top: -200px;">
+
+    <!-- Code for the main content goes here. -->
+
+    <!-- Start: Footer Basic -->
+    <div class="footer-basic">
         <footer>
             <!-- Start: Social Icons -->
             <div class="social"><a href="https://www.instagram.com/rmituniversity/"><i
@@ -94,10 +73,16 @@
                 <li class="list-inline-item"><a href="/map">Map</a></li>
             </ul>
             <!-- End: Links -->
-            <p class="copyright">Made with &#10084;&#65039; by Max Cantwell</p>
+            <p class="copyright">Made with &#10084;&#65039; by Deakin Carr</p>
             <!-- Start: Copyright -->
         </footer>
     </div>
+    <!-- End: Footer Basic --> 
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
