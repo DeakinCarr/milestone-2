@@ -1,0 +1,4 @@
+SELECT gC.State_Province_Name, gC.Country_Region_Name, gC.Country_Code, Cases, newCases, Deaths, newDeaths, ((Deaths) * 10000 / Population) AS 'Deaths %', Population, ((Cases) * 10000 / Population) AS 'Population Infected %'
+FROM getCumulativeStates gC
+LEFT JOIN getMostRecentStates gMR ON gC.State_Province_Name = gMR.State_Province_Name AND gC.Country_Region_Name = gMR.Country_Region_Name
+LEFT JOIN getPopulationStates gP ON gC.State_Province_Name = gP.State_Province_Name AND gC.Country_Region_Name = gP.Country_Region_Name

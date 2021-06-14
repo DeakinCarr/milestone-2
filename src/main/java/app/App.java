@@ -41,9 +41,11 @@ public class App {
         app.get(Overview.URL, new Overview());
         app.get(BigMap.URL, new BigMap());
         app.get(Facts.URL, new Facts());
+        app.get(compareStates.URL, new compareStates());
 
         // POST pages can accept form data
         app.post(Overview.URL, new Overview());
+        app.post(compareStates.URL, new compareStates());
     }
 
 }

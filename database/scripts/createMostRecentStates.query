@@ -1,0 +1,17 @@
+CREATE VIEW getMostRecentStates(State_Province_Name, Country_Region_Name, Date, newCases, newDeaths)
+AS 
+    SELECT sp.State_Province_Name, co.Country_Region_Name, da.Date, inf.Infections AS 'NewCases', inf.Deaths AS 'NewDeaths'
+    
+    FROM Infections_Deaths inf 
+    
+    LEFT JOIN Locations lo 
+        ON inf.Location_ID = lo.ID 
+    LEFT JOIN Countries_Regions co 
+        ON lo.Country_Region_ID = co.ID 
+    LEFT JOIN States_Provinces sp 
+        ON lo.State_Province_ID = sp.ID 
+    LEFT JOIN Dates da 
+        ON da.ID = inf.Date_ID 
+        
+    GROUP BY co.Country_Region_Name, sp.State_Province_Name
+    HAVING MAX(da.Date)

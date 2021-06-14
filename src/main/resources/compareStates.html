@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Covid-19 Database Website</title>
+
+    <link rel="stylesheet" href="assets/css/flags.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+
+<body style="background-color: #F7F8FC; overflow-x:hidden;">
+    <header style="padding: 20px 0px;background-color: white;">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-md-4">
+                    <div class="row justify-content-left align-items-center no-gutters" style="text-align: center;">
+                        <a href="/">
+                            <div class="col-sm-4">
+                                <!-- Start: Navbar Logo --><img id="logo" src="assets/img/Logo.webp" width=96>
+                                <!-- End: Navbar Logo -->
+                            </div>
+                            <div class="col-sm-5">
+                                <h1
+                                    style="font-family: 'Fira Sans', sans-serif;font-style: italic;font-size:48px;color:#333;">
+                                    COVIDDB</h1>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-7" style="font-family: Nunito, sans-serif;">
+                    <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/countries">Countries</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/states">States</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </header>
+    <!-- Start: Content -->
+    <section style="margin-top: 24px; min-height:75vh">
+        <div class="container">
+            <!-- Start: Country Stats -->
+            <h1>Compare States & Provinces</h1>
+            <form id="country_selection" action="/states" method="POST">
+                <div class="row" style="margin: 0px -8px 16px -16px;">
+                    <div class="col">
+                        <div class="card" style="padding:16px;">
+                            <div class="card-body">
+                                <!-- Start: Top Half -->
+                                <div class="row vertical-align">
+                                    <div class="col-lg-7">
+                                        <h4 style="font-family: 'Fira Sans', sans-serif;font-weight: 500;">
+                                            Coronavirus (COVID-19) Stats</h4>
+                                    </div>
+                                    <div class="col-lg-5" style="text-align:right;">
+
+                                        <div id="demo" data-input-name="country" th:data-selected-country="${country}"
+                                            data-button-size="btn-lg" data-button-type="btn-warning"
+                                            data-scrollable="true" data-scrollable-height="250px" name="country">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End: Top Half -->
+                                <!-- Start: Divider Line -->
+                                <div style="border-bottom: 1px rgba(0,0,0,.125) solid;height:25px;text-align:center;"></div>
+                                <!-- End: Divider Line -->
+                                <!-- Start: Bottom Half -->
+                                <div class="row">
+                                    <div class="col">
+                                        <table id="country-table" class="table sortable">
+                                            <thead style="font-family: 'Fira Sans', sans-serif;">
+                                                <tr>
+                                                    <th scope="col" data-defaultsort="asc">State/Province</th>
+                                                    <th scope="col">Total Cases</th>
+                                                    <th scope="col">New Cases</th>
+                                                    <th scope="col">Total Deaths</th>
+                                                    <th scope="col">New Deaths</th>
+                                                    <th scope="col">Deaths %</th>
+                                                    <th scope="col">Population</th>
+                                                    <th scope="col">Population Infected %</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-family: Nunito, sans-serif;">
+                                                <tr th:each="table_val : ${table_vals}">
+                                                    <td scope="row" th:text="${table_val[0]}"></td>
+                                                    <td th:text="${table_val[3]}"></td>
+                                                    <td th:text="${table_val[4]}"></td>
+                                                    <td th:text="${table_val[5]}"></td>
+                                                    <td th:text="${table_val[6]}"></td>
+                                                    <td th:text="${table_val[7]}"></td>
+                                                    <td th:text="${table_val[8]}"></td>
+                                                    <td th:text="${table_val[9]}"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <!-- End: Country Stats -->
+
+        </div>
+    </section>
+    <!-- End: Content -->
+    <!-- Start: Footer Basic -->
+    <div class="footer-basic">
+        <footer>
+            <!-- Start: Social Icons -->
+            <div class="social"><a href="https://www.instagram.com/rmituniversity/"><i
+                        class="icon ion-social-instagram"></i></a><a
+                    href="https://www.linkedin.com/school/rmit-university"><i
+                        class="icon ion-social-linkedin"></i></a><a href="https://twitter.com/RMIT"><i
+                        class="icon ion-social-twitter"></i></a><a href="https://www.facebook.com/RMITuniversity/"><i
+                        class="icon ion-social-facebook"></i></a></div>
+            <!-- End: Social Icons -->
+            <!-- Start: Links -->
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="/">Home</a></li>
+                <li class="list-inline-item"><a href="/facts">Facts</a></li>
+                <li class="list-inline-item"><a href="/countries">Countries</a></li>
+                <li class="list-inline-item"><a href="/states">States</a></li>
+                <li class="list-inline-item"><a href="/map">Map</a></li>
+            </ul>
+            <!-- End: Links -->
+            <p class="copyright">Made with &#10084;&#65039; by Deakin Carr</p>
+            <!-- Start: Copyright -->
+        </footer>
+    </div>
+    <!-- End: Footer Basic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.flagstrap.js"></script>
+<script th:inline="javascript">
+    $('#demo').flagStrap({
+        onSelect: function (value, element) {
+            document.getElementById("country_selection").submit()
+        },
+        countries: [[${codes}]]
+    });
+</script>
+
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+
+<script src="assets/js/maps/amchartsexample.js"></script>
+
+<script src="assets/js/bootstrap-sortable.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
+
+</html>

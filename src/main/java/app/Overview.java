@@ -9,7 +9,7 @@ import io.javalin.http.Handler;
 
 public class Overview implements Handler{
     // URL of this page relative to http://localhost:7000/
-    public static final String URL = "/overview";
+    public static final String URL = "/countries";
 
     // Name of the Thymeleaf HTML template page in the resources folder
     private static final String TEMPLATE = ("overview.html");

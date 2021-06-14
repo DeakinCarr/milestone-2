@@ -301,6 +301,105 @@ public class JDBCConnection {
         return table;
     }
 
+    public ArrayList<ArrayList<String>> getStatesTableValues(String Country_Code) throws IOException {
+        System.out.println("Called: getStatesTableValues(String Country_Code)");
+        ArrayList<ArrayList<String>> table = new ArrayList<>();
+        Connection connection = null;
+
+        
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            String query = readFile("database/scripts/getStatesDataTable.query");
+            query = query + "WHERE NOT gC.State_Province_Name IS NULL AND gC.Country_Code = '" + Country_Code + "'";
+
+            ResultSet results = statement.executeQuery(query);
+
+            while (results.next()){
+                ArrayList<String> res = new ArrayList<>();
+                res.add(results.getString("State_Province_Name"));
+                res.add(results.getString("Country_Region_Name"));
+                res.add(results.getString("Country_Code"));
+                res.add(results.getString("Cases"));
+                res.add(results.getString("newCases"));
+                res.add(results.getString("Deaths"));
+                res.add(results.getString("newDeaths"));
+                res.add(String.valueOf(results.getDouble("Deaths %") / 100.0));
+                res.add(results.getString("Population"));
+                res.add(String.valueOf(results.getDouble("Population Infected %") / 100.0));
+                res.add("nan");
+                res.add("nan");
+                table.add(res);
+            }
+
+            statement.close();
+        
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+        System.out.println("Concluded: getStatesTableValues(String Country_Code)\n");
+
+        return table;
+    }
+
+    public HashMap<String, String> getStatesCodes() throws IOException {
+        System.out.println("Called: getStatesCodes()");
+        HashMap<String, String> codes = new HashMap<>();
+        Connection connection = null;
+
+        
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            String query = readFile("database/scripts/getStatesDataTable.query");
+            query = query + "WHERE NOT gC.State_Province_Name IS NULL GROUP BY Country_Code";
+
+            ResultSet results = statement.executeQuery(query);
+
+            while (results.next()){
+                codes.put(results.getString("Country_Code"), results.getString("Country_Region_Name"));
+            }
+
+            statement.close();
+        
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+        System.out.println("Concluded: getStatesCodes()\n");
+
+        return codes;
+    }
+
     public ArrayList<Map<String, Object>> addColours(ArrayList<Map<String, Object>> values, int[] minRGB, int[] maxRGB) {
         Connection connection = null;
         try{

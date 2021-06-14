@@ -1,0 +1,10 @@
+CREATE VIEW getPopulationStates(State_Province_Name, Country_Region_Name, Population)
+AS
+    SELECT sp.State_Province_Name, Country_Region_Name, SUM(Population)
+    FROM Locations Lo
+    LEFT JOIN Countries_Regions CR
+        ON Lo.Country_Region_ID = CR.ID
+        
+    LEFT JOIN States_Provinces sp
+        ON Lo.State_Province_ID = sp.ID
+    GROUP BY Country_Region_Name, State_Province_Name

@@ -1,0 +1,15 @@
+CREATE VIEW getCumulativeStates(State_Province_Name, Country_Region_Name, Cases, Deaths)
+AS
+    SELECT sp.State_Province_Name, co.Country_Region_Name, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths 
+        
+    FROM Infections_Deaths st 
+    
+    LEFT JOIN Locations lo ON 
+       st.Location_ID = lo.ID 
+    LEFT JOIN Countries_Regions co ON 
+        lo.Country_Region_ID = co.ID 
+    
+    LEFT JOIN States_Provinces sp ON 
+        lo.State_Province_ID = sp.ID 
+        
+    GROUP BY co.Country_Region_Name, sp.State_Province_Name

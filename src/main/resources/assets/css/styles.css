@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 .nav-tabs .nav-link {
   color: #171717;
   font-size:16px;
@@ -133,9 +137,13 @@
   font-weight: 600;
 }
 
+section {
+  font-family: 'Nunito', sans-serif;
+}
+
+
 .covid-transmission-section{
   padding:64px 0px;
-  font-family: 'Nunito', sans-serif;
   text-align: center;
 }
 
