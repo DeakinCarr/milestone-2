@@ -21,7 +21,7 @@ import java.sql.Statement;
 public class JDBCConnection2 {
 
     // Name of database file (contained in database folder)
-    private static final String DATABASE = "jdbc:sqlite:database/Covid-19";
+    private static final String DATABASE = "jdbc:sqlite:database/Covid19.db";
 
     public JDBCConnection2() {
         System.out.println("Created JDBC Connection Object");
