@@ -1,0 +1,4 @@
+SELECT gC.Country_Region_Name, Country_Code, Cases, newCases, Deaths, newDeaths, ((Deaths) * 10000 / Population) AS 'Deaths %', Population, ((Cases) * 10000 / Population) AS 'Population Infected %'
+FROM getCumulative gC
+LEFT JOIN getMostRecent gMR USING(Country_Code)
+LEFT JOIN getPopulation gP USING(Country_Code)

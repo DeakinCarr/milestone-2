@@ -31,7 +31,21 @@ public class ViewSimilar implements Handler {
         Map<String, Object> model = new HashMap<String, Object>();
 
         
-        JDBCConnection2 jdbc2 = new JDBCConnection2();
+        String countryCode = context.formParam("country");
+        if (countryCode == null) {
+            countryCode = "AU";
+        }
+
+
+        
+        model.put("country", countryCode);
+        JDBCConnection jdbc = new JDBCConnection();
+        ArrayList<ArrayList<String>> table = jdbc.getStatesTableValues(countryCode);
+        HashMap<String, String> codes = jdbc.getStatesCodes();
+        System.out.print(codes);
+        model.put("table_vals", table);
+        model.put("codes", codes);
+        
         
         // int infectionsTot = jdbc2.getInfectionsTot();
         // model.put("infectionsTot", infectionsTot);

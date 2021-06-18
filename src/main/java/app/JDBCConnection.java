@@ -534,4 +534,60 @@ public class JDBCConnection {
 
         return res;
     }
+
+    // Max's Table Values
+    // public ArrayList<ArrayList<String>> getSimilarCountryTableValues(String Country_Code) throws IOException {
+    //     System.out.println("Called: getSimilarCountryTableValues()");
+    //     ArrayList<ArrayList<String>> table = new ArrayList<>();
+    //     Connection connection = null;
+
+        
+
+    //     try {
+    //         connection = DriverManager.getConnection(DATABASE);
+
+    //         Statement statement = connection.createStatement();
+    //         statement.setQueryTimeout(30);
+
+    //         String query = readFile("database/scripts/getSimilarDataTable.query");
+    //         query = query + " WHERE Latitude " + ;
+
+    //         ResultSet results = statement.executeQuery(query);
+
+    //         while (results.next()){
+    //             ArrayList<String> res = new ArrayList<>();
+    //             res.add(results.getString("Country_Code"));
+    //             res.add(results.getString("Country_Region_Name"));
+    //             res.add(results.getString("Cases"));
+    //             res.add(results.getString("newCases"));
+    //             res.add(results.getString("Deaths"));
+    //             res.add(results.getString("newDeaths"));
+    //             res.add(String.valueOf(results.getDouble("Deaths %") / 100.0));
+    //             res.add(results.getString("Population"));
+    //             res.add(String.valueOf(results.getDouble("Population Infected %") / 100.0));
+    //             res.add("nan");
+    //             res.add("nan");
+    //             table.add(res);
+    //         }
+
+    //         statement.close();
+        
+    //     } catch (SQLException e) {
+    //         // If there is an error, lets just pring the error
+    //         System.err.println(e.getMessage());
+    //     } finally {
+    //         // Safety code to cleanup
+    //         try {
+    //             if (connection != null) {
+    //                 connection.close();
+    //             }
+    //         } catch (SQLException e) {
+    //             // connection close failed.
+    //             System.err.println(e.getMessage());
+    //         }
+    //     }
+    //     System.out.println("Concluded: getTableValues()\n");
+
+    //     return table;
+    // }
 }

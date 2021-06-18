@@ -41,7 +41,7 @@
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="/countries">Countries</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="/states">States</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/states">States</a></li>
                         <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
                     </ul>
                 </div>
@@ -52,6 +52,75 @@
     </header>
 
     <!-- Code for the main content goes here. -->
+    
+    <!-- Start: Content -->
+    <section style="margin-top: 24px; min-height:75vh">
+        <div class="container">
+            <!-- Start: Country Stats -->
+            <h1>Compare Nearby Countries</h1>
+            <form id="country_selection" action="/similar" method="POST">
+                <div class="row" style="margin: 0px -8px 16px -16px;">
+                    <div class="col">
+                        <div class="card" style="padding:16px;">
+                            <div class="card-body">
+                                <!-- Start: Top Half -->
+                                <div class="row vertical-align">
+                                    <div class="col-lg-7">
+                                        <h4 style="font-family: 'Fira Sans', sans-serif;font-weight: 500;">
+                                            Coronavirus (COVID-19) Stats</h4>
+                                    </div>
+                                    <div class="col-lg-5" style="text-align:right;">
+
+                                        <div id="demo" data-input-name="country" th:data-selected-country="${country}"
+                                            data-button-size="btn-lg" data-button-type="btn-warning"
+                                            data-scrollable="true" data-scrollable-height="250px" name="country">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- End: Top Half -->
+                                <!-- Start: Divider Line -->
+                                <div style="border-bottom: 1px rgba(0,0,0,.125) solid;height:25px;text-align:center;"></div>
+                                <!-- End: Divider Line -->
+                                <!-- Start: Bottom Half -->
+                                <div class="row">
+                                    <div class="col">
+                                        <table id="country-table" class="table sortable">
+                                            <thead style="font-family: 'Fira Sans', sans-serif;">
+                                                <tr>
+                                                    <th scope="col" data-defaultsort="asc">Country</th>
+                                                    <th scope="col">Total Cases</th>
+                                                    <th scope="col">New Cases</th>
+                                                    <th scope="col">Total Deaths</th>
+                                                    <th scope="col">New Deaths</th>
+                                                    <th scope="col">Deaths %</th>
+                                                    <th scope="col">Population</th>
+                                                    <th scope="col">Population Infected %</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-family: Nunito, sans-serif;">
+                                                <tr th:each="table_val : ${table_vals}">
+                                                    <td scope="row" th:text="${table_val[0]}"></td>
+                                                    <td th:text="${table_val[3]}"></td>
+                                                    <td th:text="${table_val[4]}"></td>
+                                                    <td th:text="${table_val[5]}"></td>
+                                                    <td th:text="${table_val[6]}"></td>
+                                                    <td th:text="${table_val[7]}"></td>
+                                                    <td th:text="${table_val[8]}"></td>
+                                                    <td th:text="${table_val[9]}"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <!-- End: Country Stats -->
+
 
     <!-- Start: Footer Basic -->
     <div class="footer-basic">

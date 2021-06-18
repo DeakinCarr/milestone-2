@@ -47,6 +47,7 @@ public class App {
         // POST pages can accept form data
         app.post(Overview.URL, new Overview());
         app.post(compareStates.URL, new compareStates());
+        app.post(ViewSimilar.URL, new ViewSimilar());
     }
 
 }
