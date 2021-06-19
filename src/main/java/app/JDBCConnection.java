@@ -539,6 +539,7 @@ public class JDBCConnection {
     // public ArrayList<ArrayList<String>> getSimilarCountryTableValues(String Country_Code) throws IOException {
     //     System.out.println("Called: getSimilarCountryTableValues()");
     //     ArrayList<ArrayList<String>> table = new ArrayList<>();
+    //     ArrayList<ArrayList<String>> tempLongLat = new ArrayList<>();
     //     Connection connection = null;
 
         
@@ -548,6 +549,32 @@ public class JDBCConnection {
 
     //         Statement statement = connection.createStatement();
     //         statement.setQueryTimeout(30);
+
+    //         // Gets the initial Longitude and Latitude of the country
+    //         String longLatInfo = readFile("database/scripts/getLongLatInfo.query") + " \"" + Country_Code + "\"";
+    //         ResultSet longLat = statement.executeQuery(longLatInfo);
+    //         while (longLat.next()){
+    //             Double longitude = longLat.getDouble("Longitude");
+    //             Double latitude = longLat.getDouble("Latitude");
+    //         }
+    //         // Gets all other Longitude Latitude and Country names
+    //         int temp = 0;
+    //         Double[] longFull = new Double[248];
+    //         Double[] latFull = new Double[248];
+    //         String[] countCod = new String[248];
+    //         String question = readFile("database/scripts/getFullLongLatInfo.query")
+    //         ResultSet fullLongLat = statement.executeQuery(question);
+
+    //         while (fullLongLat.next()) {
+    //             countCod[temp] = fullLongLat.getString("Country_Code");
+    //             longFull[temp] = fullLongLat.getDouble("Longitude");
+    //             latFull[temp] = fullLongLat.getDouble("Latitude");
+    //             if (longFull[temp] >= (longitude - 15) && longFull[temp] <= (longitude + 15)) {
+                    
+    //             }
+    //             ++temp;
+    //         }
+
 
     //         String query = readFile("database/scripts/getSimilarDataTable.query");
     //         query = query + " WHERE Latitude " + ;

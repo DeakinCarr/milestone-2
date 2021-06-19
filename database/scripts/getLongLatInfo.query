@@ -1,0 +1,5 @@
+SELECT Country_Code, Latitude, Longitude
+FROM Country_Codes
+INNER JOIN Locations
+ON Country_Codes.ID = Locations.ID
+WHERE Country_Code LIKE
