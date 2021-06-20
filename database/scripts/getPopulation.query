@@ -1,0 +1,3 @@
+SELECT Country_Code, Population
+FROM Locations
+WHERE Locations.Country_Code LIKE

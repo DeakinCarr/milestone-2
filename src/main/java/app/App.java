@@ -43,11 +43,13 @@ public class App {
         app.get(Facts.URL, new Facts());
         app.get(compareStates.URL, new compareStates());
         app.get(ViewSimilar.URL, new ViewSimilar());
+        app.get(ViewPopulation.URL, new ViewPopulation());
 
         // POST pages can accept form data
         app.post(Overview.URL, new Overview());
         app.post(compareStates.URL, new compareStates());
         app.post(ViewSimilar.URL, new ViewSimilar());
+        app.post(ViewPopulation.URL, new ViewPopulation());
     }
 
 }
