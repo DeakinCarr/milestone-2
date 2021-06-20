@@ -148,10 +148,11 @@ public class JDBCConnection2 {
                 
     
     
-                String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code LIKE \"" + countCod[0] + "\"";
+                String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code IN ('" + countCod[0] + "'";
                 for (int i = 1; i < countCod.length; ++i) {
-                    query = query + " OR Country_Codes.Country_Code Like \"" + countCod[i] + "\"";
+                    query = query + ",'" + countCod[i] + "'";
                 }
+                query += ")";
                 System.out.println(query);
     
                 ResultSet results = statement.executeQuery(query);

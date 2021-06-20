@@ -61,7 +61,6 @@
         <div class="container">
             <!-- Start: Country Stats -->
             <h1>Compare Nearby Countries</h1>
-            <form id="country_selection" action="/similar" method="POST">
                 <div class="row" style="margin: 0px -8px 16px -16px;">
                     <div class="col">
                         <div class="card" style="padding:16px;">
@@ -74,12 +73,14 @@
                                     </div>
                                     <div class="col-lg-5" style="text-align:right;">
 
-                                        <div id="demo" data-input-name="country"
-                                                th:data-selected-country="${country}" data-button-size="btn-lg"
-                                                data-button-type="btn-warning" data-scrollable="true"
-                                                data-scrollable-height="250px" name="country">
-                                            </div>
+                                        <form id="country_selection" action="/similar" method="POST">
+                                            <div id="demo" data-input-name="country"
+                                                    th:data-selected-country="${country}" data-button-size="btn-lg"
+                                                    data-button-type="btn-warning" data-scrollable="true"
+                                                    data-scrollable-height="250px" name="country">
+                                                </div>
 
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- End: Top Half -->
@@ -122,7 +123,6 @@
                     </div>
 
                 </div>
-            </form>
             <!-- End: Country Stats -->
 
 
