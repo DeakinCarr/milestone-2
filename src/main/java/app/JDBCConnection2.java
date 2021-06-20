@@ -129,8 +129,8 @@ public class JDBCConnection2 {
                 String question = readFile("database/scripts/getFullLongLat.query");
                 ResultSet fullLongLat = statement.executeQuery(question);
                 // Gets the initial Longitude and Latitude of the country
-                String longLatInfo = readFile("database/scripts/getLongLatInfo.query") + " \"" + Country_Code + "\"";
-                ResultSet longLat = statement.executeQuery(longLatInfo);
+                String getLongLatInfo = readFile("database/scripts/getLongLatInfo.query") + " \"" + Country_Code + "\"";
+                ResultSet longLat = statement.executeQuery(getLongLatInfo);
                 while (longLat.next()){
                     Double longitude = longLat.getDouble("Longitude");
                     Double latitude = longLat.getDouble("Latitude");
@@ -138,7 +138,7 @@ public class JDBCConnection2 {
                         countCod[temp] = fullLongLat.getString("Country_Code");
                         longFull[temp] = fullLongLat.getDouble("Longitude");
                         latFull[temp] = fullLongLat.getDouble("Latitude");
-                        if (longFull[temp] >= (longitude - 30) && longFull[temp] <= (longitude + 30) && latFull[temp] >= (latitude - 30) && latFull[temp] <= (latitude + 30)) {
+                        if (longFull[temp] >= (longitude - 15) && longFull[temp] <= (longitude + 15) && latFull[temp] >= (latitude - 15) && latFull[temp] <= (latitude + 15)) {
                          ++temp;   
                         }
                     }
