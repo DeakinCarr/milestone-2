@@ -120,6 +120,7 @@ public class JDBCConnection2 {
                 connection = DriverManager.getConnection(DATABASE);
     
                 Statement statement = connection.createStatement();
+                Statement longLatStat = connection.createStatement();
                 statement.setQueryTimeout(30);
     
                 int temp = 0;
@@ -127,7 +128,7 @@ public class JDBCConnection2 {
                 Double[] latFull = new Double[248];
                 String[] countCod = new String[248];
                 String question = readFile("database/scripts/getFullLongLat.query");
-                ResultSet fullLongLat = statement.executeQuery(question);
+                ResultSet fullLongLat = longLatStat.executeQuery(question);
                 // Gets the initial Longitude and Latitude of the country
                 String getLongLatInfo = readFile("database/scripts/getLongLatInfo.query") + " \"" + Country_Code + "\"";
                 ResultSet longLat = statement.executeQuery(getLongLatInfo);
@@ -138,7 +139,10 @@ public class JDBCConnection2 {
                         countCod[temp] = fullLongLat.getString("Country_Code");
                         longFull[temp] = fullLongLat.getDouble("Longitude");
                         latFull[temp] = fullLongLat.getDouble("Latitude");
-                        if (longFull[temp] >= (longitude - 15) && longFull[temp] <= (longitude + 15) && latFull[temp] >= (latitude - 15) && latFull[temp] <= (latitude + 15)) {
+                        if (longFull[temp] >= (longitude - 15) 
+                            && longFull[temp] <= (longitude + 15) 
+                            && latFull[temp] >= (latitude - 15) 
+                            && latFull[temp] <= (latitude + 15)) {
                          ++temp;   
                         }
                     }
@@ -168,8 +172,6 @@ public class JDBCConnection2 {
                     res.add(String.valueOf(results.getDouble("Deaths %") / 100.0));
                     res.add(results.getString("Population"));
                     res.add(String.valueOf(results.getDouble("Population Infected %") / 100.0));
-                    res.add("nan");
-                    res.add("nan");
                     table.add(res);
                 }
     

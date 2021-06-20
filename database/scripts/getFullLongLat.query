@@ -1,4 +1,5 @@
-SELECT Country_Codes.Country_Code, Latitude, Longitude
-FROM Country_Codes
-INNER JOIN Locations
-ON Country_Codes.ID = Locations.ID
+SELECT Country_Region_Name, Locations.Country_Code, Latitude, Longitude
+FROM Locations 
+
+LEFT JOIN Countries_Regions
+    ON Locations.Country_Region_ID = Countries_Regions.ID
