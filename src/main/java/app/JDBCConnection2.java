@@ -142,7 +142,9 @@ public class JDBCConnection2 {
                         countCod[temp] = fullLongLat.getString("Country_Code");
                         longFull[temp] = fullLongLat.getDouble("Longitude");
                         latFull[temp] = fullLongLat.getDouble("Latitude");
-                        // Checks if the country is Zimbabwe as it is found at the end of the list
+                        // Checks if the country is Zimbabwe
+                        // Also has some error handling as Zimbabwe is the last country in the list and therefore needs 
+                        // to be prevented from showing up when it does not fit the criteria
                         if (!countCod[temp].equals("ZW")){ 
                             if (longFull[temp] >= (longitude - 15) 
                                 && longFull[temp] <= (longitude + 15) 
@@ -246,7 +248,8 @@ public class JDBCConnection2 {
                                     ++temp;   
                                 }
                                 // Checks if popFull[temp] is equal to the population of Zimbabwe
-                                // Also has some error handling
+                                // Also has some error handling as Zimbabwe is the last country in the list and therefore needs 
+                                // to be prevented from showing up when it does not fit the criteria
                                 if (popFull[temp] == 14862927) {
                                     if (!(popFull[temp] >= (basePopulation - (basePopulation * 0.3)) 
                                     && popFull[temp] <= (basePopulation + (basePopulation * 0.3)))) {
