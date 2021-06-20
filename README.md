@@ -12,6 +12,7 @@ Folders:
 │ 
 ├── /target                      - build directory (DO NOT MODIFY)
 ├── /database                    - The folder to store sqlite database files (*.db files)
+│         └── scripts            - The folder to store any external SQL scripts
 ├── pom.xml                      - Configure Build (DO NOT MODIFY)
 └── README.md                    - This file ;)
 ```
@@ -26,6 +27,8 @@ Libraries required as dependencies
    * slf4j-simple (lightweight logging)
 * By xerial/jdbc
    * sqlite-jdbc
+* By jackson/fasterxml
+   * jackson-databind
 
 # Building & Running the code
 1. Open this project within VSCode
@@ -38,7 +41,7 @@ Libraries required as dependencies
 4. Go to: http://localhost:7000
 
 # Authors
-* Dr. Timothy Wiley, School of Computing Technologies, STEM College, RMIT University.
-* Prof. Santha Sumanasekara, School of Computing Technologies, STEM College, RMIT University.
+* Deakin Carr, RMIT University.
+* Max Cantwell, RMIT University.
 
 Copyright RMIT University (c) 2021
