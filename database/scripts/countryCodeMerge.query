@@ -1,0 +1,32 @@
+Update Locations
+SET Country_Code = (
+SELECT country_code FROM (
+SELECT locations.id, countries.id AS Country_Region_ID, states.id AS State_Province_ID, Longitude, Latitude, Population, country_codes.country_code
+FROM Locations    
+
+LEFT JOIN Countries_Regions countries
+    ON    countries.ID = locations.Country_Region_ID
+LEFT JOIN States_Provinces States
+    ON    States.ID = locations.State_Province_ID
+    
+INNER JOIN Country_Codes
+    ON (states.state_province_name = country_codes.Alpha_2_Name)
+
+UNION 
+
+
+SELECT locations.id, countries.id, states.id, Longitude, Latitude, Population, country_codes.country_code
+FROM Locations    
+
+LEFT JOIN Countries_Regions countries
+    ON    countries.ID = locations.Country_Region_ID
+LEFT JOIN States_Provinces States
+    ON    States.ID = locations.State_Province_ID
+    
+INNER JOIN Country_Codes
+    ON (countries.country_region_name = country_codes.Alpha_2_Name AND (NOT states.state_province_name IN (Select Alpha_2_Name FROM country_codes))) 
+    OR (countries.country_region_name = country_codes.Alpha_2_Name AND states.state_province_name IS NULL)
+    ) other
+    WHERE other.Country_Region_ID = locations.Country_Region_ID AND other.State_Province_ID = locations.State_Province_ID)
+    
+    
