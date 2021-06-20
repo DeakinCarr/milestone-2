@@ -138,7 +138,7 @@ public class JDBCConnection2 {
                         countCod[temp] = fullLongLat.getString("Country_Code");
                         longFull[temp] = fullLongLat.getDouble("Longitude");
                         latFull[temp] = fullLongLat.getDouble("Latitude");
-                        if (longFull[temp] >= (longitude - 15) && longFull[temp] <= (longitude + 15) && latFull[temp] >= (latitude - 15) && latFull[temp] <= (latitude + 15)) {
+                        if (longFull[temp] >= (longitude - 30) && longFull[temp] <= (longitude + 30) && latFull[temp] >= (latitude - 30) && latFull[temp] <= (latitude + 30)) {
                          ++temp;   
                         }
                     }
@@ -150,8 +150,9 @@ public class JDBCConnection2 {
     
                 String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code LIKE \"" + countCod[0] + "\"";
                 for (int i = 1; i < countCod.length; ++i) {
-                    query = query + " OR Country_code Like \"" + countCod[i] + "\"";
+                    query = query + " OR Country_Codes.Country_Code Like \"" + countCod[i] + "\"";
                 }
+                System.out.println(query);
     
                 ResultSet results = statement.executeQuery(query);
     
