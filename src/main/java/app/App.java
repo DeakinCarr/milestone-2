@@ -30,7 +30,7 @@ public class App {
         app.get(Index.URL, new Index());
         app.get(Overview.URL, new Overview());
         app.get(BigMap.URL, new BigMap());
-        app.get(Facts.URL, new Facts());
+        app.get(Facts.URL, new Facts()); 
         app.get(compareStates.URL, new compareStates());
         app.get(ViewSimilar.URL, new ViewSimilar());
         app.get(ViewPopulation.URL, new ViewPopulation());
