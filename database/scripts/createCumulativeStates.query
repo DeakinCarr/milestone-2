@@ -1,6 +1,6 @@
-CREATE VIEW getCumulativeStates(State_Province_Name, Country_Region_Name, Cases, Deaths)
+CREATE VIEW getCumulativeStates(State_Province_Name, Country_Region_Name, Country_Code, Cases, Deaths)
 AS
-    SELECT sp.State_Province_Name, co.Country_Region_Name, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths 
+    SELECT sp.State_Province_Name, co.Country_Region_Name, co.Country_Code, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths 
         
     FROM Infections_Deaths st 
     
