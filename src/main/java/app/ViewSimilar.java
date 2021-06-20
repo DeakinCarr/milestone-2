@@ -47,11 +47,6 @@ public class ViewSimilar implements Handler {
         model.put("codes", codes);
         
         
-        // int infectionsTot = jdbc2.getInfectionsTot();
-        // model.put("infectionsTot", infectionsTot);
-        // int deathsTot = jdbc2.getDeathsTot();
-        // model.put("deathsTot", deathsTot);
-        
 
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage using Thymeleaf
