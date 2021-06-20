@@ -2,8 +2,6 @@ package app;
 
 import java.util.ArrayList;
 
-import javax.xml.transform.TransformerConfigurationException;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
