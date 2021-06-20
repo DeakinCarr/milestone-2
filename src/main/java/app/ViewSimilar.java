@@ -39,12 +39,11 @@ public class ViewSimilar implements Handler {
 
         
         model.put("country", countryCode);
-        JDBCConnection jdbc = new JDBCConnection();
-        ArrayList<ArrayList<String>> table = jdbc.getStatesTableValues(countryCode);
-        HashMap<String, String> codes = jdbc.getStatesCodes();
-        System.out.print(codes);
+        JDBCConnection2 jdbc = new JDBCConnection2();
+        ArrayList<ArrayList<String>> table = jdbc.getSimilarCountryTableValues(countryCode);
+
         model.put("table_vals", table);
-        model.put("codes", codes);
+
         
         
 
