@@ -1,0 +1,10 @@
+SELECT country_region_name
+FROM locations
+
+LEFT JOIN Countries_Regions 
+    ON locations.Country_Region_ID = countries_regions.id
+   
+    
+WHERE NOT State_Province_ID = 200
+
+GROUP BY country_region_name
