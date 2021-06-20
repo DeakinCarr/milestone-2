@@ -1,2 +1,3 @@
-SELECT Country_Code, Population
+SELECT Country_Code, SUM(Population)
 FROM Locations
+GROUP BY Locations.Country_Code

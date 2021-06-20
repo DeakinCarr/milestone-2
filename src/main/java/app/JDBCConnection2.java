@@ -234,17 +234,17 @@ public class JDBCConnection2 {
                         String getPopulation = readFile("database/scripts/getPopulation.query") + " \"" + Country_Code + "\"";
                         ResultSet pop = statement.executeQuery(getPopulation);
                         while (pop.next()){
-                            int basePopulation = pop.getInt("Population");
+                            Double basePopulation = pop.getDouble("SUM(Population)");
                             while (fullPop.next()) {
                                 countCod[temp] = fullPop.getString("Country_Code");
-                                popFull[temp] = fullPop.getInt("Population");
-                                if (popFull[temp] >= (basePopulation - basePopulation*0.3) 
-                                    && popFull[temp] <= (basePopulation + basePopulation*0.3)) {
+                                popFull[temp] = fullPop.getInt("SUM(Population)");
+                                if (popFull[temp] >= (basePopulation - (basePopulation * 0.3)) 
+                                    && popFull[temp] <= (basePopulation + (basePopulation * 0.3))) {
                                     ++temp;   
                                 }
                                 if (popFull[temp] == 14862927) {
-                                    if (!(popFull[temp] >= (basePopulation - basePopulation*0.3) 
-                                    && popFull[temp] <= (basePopulation + basePopulation*0.3))) {
+                                    if (!(popFull[temp] >= (basePopulation - (basePopulation * 0.3)) 
+                                    && popFull[temp] <= (basePopulation + (basePopulation * 0.3)))) {
                                         countCod[temp] = null;
                                     }
                                 }
