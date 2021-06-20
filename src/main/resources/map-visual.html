@@ -16,7 +16,7 @@
 
 </head>
 
-<body style="background-color: #F7F8FC;">
+<body style="background-color: white;">
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -51,7 +51,7 @@
         </div>
     </header>
     <!-- Start: Content -->
-    <section style="overflow:hidden">
+    <section style="overflow:hidden; background-color: #F7F8FC;" >
             <div class="row no-gutters"> <!-- Table -->
                 <div class="col-xl-2 col-lg-3 col-md-5 col-sm-12">
                     <div id="info">
@@ -82,7 +82,22 @@
                     <div id="bigMap"></div>
                 </div>
             </div>
+            
+            
     </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>The following countries are not represented in the above chart:</h3>
+            </div>
+            <div th:each="region : ${datalessRegions}" class="col-3">
+                <h4>
+                    <i style="border:1px solid black" th:class="${'flagstrap-icon flagstrap-' + region.Country_Code.toLowerCase()}"></i>
+                    <span th:text="${region.Alpha_2_Name}"></span>
+                </h4>
+            </div>
+        </div>
+    </div>
     <!-- End: Content -->
     <!-- Start: Footer Basic -->
     <div class="footer-basic">
@@ -127,6 +142,8 @@
 
 <script th:inline="javascript">
 polygonSeries.data = [[${mapVals}]];
+
+polygonSeries.exclude = [[${excludedRegions}]];
 </script>
 
 <script src="assets/js/bootstrap-sortable.js"></script>

@@ -333,8 +333,6 @@ public class JDBCConnection {
                 res.add(String.valueOf(results.getDouble("Deaths %") / 100.0));
                 res.add(results.getString("Population"));
                 res.add(String.valueOf(results.getDouble("Population Infected %") / 100.0));
-                res.add("nan");
-                res.add("nan");
                 table.add(res);
             }
 
@@ -537,4 +535,44 @@ public class JDBCConnection {
 
         return res;
     }
+    public ArrayList<Map<String, String>> getDatalessRegions() throws IOException{
+        ArrayList<Map<String, String>> res = new ArrayList<>();
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            String query = readFile("database/scripts/getDatalessRegions.query");
+
+            ResultSet results = statement.executeQuery(query);
+            
+            while (results.next()){
+                Map<String, String> tmp = new HashMap<String, String>();
+                tmp.put("Alpha_2_Name", results.getString("Alpha_2_Name"));
+                tmp.put("Country_Code", results.getString("Country_Code"));
+                res.add(tmp);
+            }
+            statement.close();
+        
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return res;
+    }
+
 }

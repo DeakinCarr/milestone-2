@@ -30,6 +30,16 @@ public class BigMap implements Handler {
         ArrayList<Map<String, Object>> mapVals = jdbc.getBigMap();
         model.put("mapVals", mapVals);
 
+        ArrayList<Map<String, String>> datalessRegions = jdbc.getDatalessRegions();
+        model.put("datalessRegions", datalessRegions);
+
+        ArrayList<String> excludedRegions = new ArrayList<>();
+        for (Map<String, String> region : datalessRegions) {
+            excludedRegions.add(region.get("Country_Code"));
+        }
+        excludedRegions.add("AQ");
+
+        model.put("excludedRegions", excludedRegions);
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage using Thymeleaf
         context.render(TEMPLATE, model);
