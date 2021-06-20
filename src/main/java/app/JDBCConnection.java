@@ -575,4 +575,48 @@ public class JDBCConnection {
         return res;
     }
 
+    public Map<String, String> getIndexPageInfo() throws IOException{
+        System.out.println("Called: getIndexPageInfo()");
+        Map<String, String> res = new HashMap<>();
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(DATABASE);
+
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            String query = readFile("database/scripts/getIndexPageInfo.query");
+
+            ResultSet results = statement.executeQuery(query);
+            
+            DecimalFormat formatter = new DecimalFormat("#,###");
+
+            while (results.next()){
+                res.put("Ttl_Cases",  formatter.format(results.getInt("Ttl_Cases")));
+                res.put("Ttl_Deaths", formatter.format(results.getInt("Ttl_Deaths")));
+                res.put("New_Cases",  formatter.format(results.getInt("New_Cases")));
+            }
+            statement.close();
+        
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        System.out.println("Concluded: getIndexPageInfo()\n");
+        return res;
+    }
+
 }
