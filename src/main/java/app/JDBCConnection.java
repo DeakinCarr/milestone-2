@@ -13,13 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 
-/**
- * Class for Managing the JDBC Connection to a SQLLite Database.
- * Allows SQL queries to be used with the SQLLite Databse in Java.
- *
- * @author Santha Sumanasekara, 2021. email: santha.sumanasekara@rmit.edu.au
- * @author Timothy Wiley, 2021. email: timothy.wiley@rmit.edu.au
- */
+
 public class JDBCConnection {
 
     // Name of database file (contained in database folder)
@@ -29,6 +23,15 @@ public class JDBCConnection {
         System.out.println("Created JDBC Connection Object");
     }
 
+    /**
+     * Quickly allows the reading of files on the local machine.
+     * The url must specify a relative path to the file from the initial application.
+     * Very useful for reading in SQL scripts.
+     * 
+     * @param path the path to the file to read.
+     * @return  the string value of the files contents.
+     * @throws IOException
+     */
     public String readFile(String path) throws IOException {
         String everything = "";
         BufferedReader br = new BufferedReader(new FileReader(path));
@@ -48,6 +51,14 @@ public class JDBCConnection {
         return everything;
     }
 
+    /**
+     * Gets the most recent data of a specified country.
+     * The input is the Alpha-2 string of the desired location.
+     * 
+     * @param countryCode   Two character long string of a countries Alpha-2 code
+     * @return              A map consisting of the countries most recent statistics
+     * @throws IOException
+     */
     public Map<String, Object> getMostRecent(String countryCode) throws IOException {
         System.out.println("Called: getMostRecent()");
         Map<String, Object> output = new HashMap<String, Object>();
@@ -67,6 +78,7 @@ public class JDBCConnection {
 
             DecimalFormat formatter = new DecimalFormat("#,###");
 
+            // Iterate through results and populate the map
             while(results.next()){
 
                 String Country = results.getString("Country_Region_Name");
@@ -100,6 +112,15 @@ public class JDBCConnection {
         return output;
     }
 
+    /**
+     * Queries the cumulative statistics for a given country. 
+     * Any numerical out puts become ',' seperated.
+     * The inputted countryCode represents a given countries Alpha-2 code.
+     * 
+     * @param countryCode   Two character long string of a countries Alpha-2 code
+     * @return              A map consisting of the relevant countries cumulative statistical information.
+     * @throws IOException
+     */
     public Map<String, Object> getCumulative(String countryCode) throws IOException {
         System.out.println("Called: getCumulative(countryCode)");
         Map<String, Object> output = new HashMap<String, Object>();
@@ -121,6 +142,7 @@ public class JDBCConnection {
 
             DecimalFormat formatter = new DecimalFormat("#,###");
             
+            // Iterate through results and populate the map with relevant field values
             while(results.next()){
 
                 String Country = results.getString("Country_Region_Name");
@@ -151,6 +173,13 @@ public class JDBCConnection {
         System.out.println("Concluded: getCumulative(countryCode)\n");
         return output;
     }
+
+    /**
+     * Queries the cumulative information from the databases getCumulative view.
+     * It then returns a map of the relevant statistical information, with numerical values seperated by ','
+     * @return              A map of cumulative values for all locations
+     * @throws IOException
+     */
     public Map<String, Object> getCumulative() throws IOException {
         System.out.println("Called: getCumulative()");
         Map<String, Object> output = new HashMap<String, Object>();
@@ -167,7 +196,8 @@ public class JDBCConnection {
 
             // Get Result
             ResultSet results = statement.executeQuery(query);
-
+            
+            // Iterate through results and populate the map with relevant field values
             DecimalFormat formatter = new DecimalFormat("#,###");
             while(results.next()){
 
@@ -198,6 +228,11 @@ public class JDBCConnection {
         return output;
     }
 
+    /**
+     * Creates an array of dictionaries containing case counts and the locations Alpha-2 code.
+     * @return              An ArrayList of maps including cumulative case values and countryCodes
+     * @throws IOException
+     */
     public ArrayList<Map<String, Object>> getHeatMap() throws IOException {
         System.out.println("Called: getHeatMap()");
         ArrayList<Map<String, Object>> output = new ArrayList<>();
@@ -216,6 +251,7 @@ public class JDBCConnection {
             // Get Result
             ResultSet results = statement.executeQuery(query);
 
+            // Iterate through results and populate the map with relevant field values
             while(results.next()){
                 Map<String, Object> tmp = new HashMap<String, Object>();
 
@@ -247,13 +283,18 @@ public class JDBCConnection {
         return output;
     }
     
+    /**
+     * Generates a table including Total, New, and population % affected for both Case and Death fields.
+     * Additionally the table includes population information.
+     * @return              A table consisting of basically all data in the database.
+     * @throws IOException
+     */
     public ArrayList<ArrayList<String>> getTableValues() throws IOException {
         System.out.println("Called: getTableValues()");
         ArrayList<ArrayList<String>> table = new ArrayList<>();
         Connection connection = null;
 
         
-
         try {
             connection = DriverManager.getConnection(DATABASE);
 
@@ -305,8 +346,6 @@ public class JDBCConnection {
         System.out.println("Called: getStatesTableValues(String Country_Code)");
         ArrayList<ArrayList<String>> table = new ArrayList<>();
         Connection connection = null;
-
-        
 
         try {
             connection = DriverManager.getConnection(DATABASE);
