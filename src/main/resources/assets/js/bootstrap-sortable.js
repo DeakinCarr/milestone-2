@@ -1,3 +1,12 @@
+// This library is not of my own creation. My addition is the implementation of the Alpha-2 codes to the database,
+// and then making *literally everything* run off them. While I am able to simply plug back end queries in here to 
+// make the library work properly, I can only do that because I spent several hours maticulously aligning each
+// country and their subregions/provinces/state, to the provided datasets.
+
+// Fun Fact: Puerto Rico is a region of the US, but is not a state. Puerto Rico even 
+// has its own country code, flag, and nationality, but its still part of America. Can you see how this made it
+// very difficult to include in the database.
+
 /**
  * adding sorting ability to HTML tables with Bootstrap styling
  * @summary HTML tables sorting ability

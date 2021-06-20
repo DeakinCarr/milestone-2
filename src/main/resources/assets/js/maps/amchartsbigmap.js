@@ -1,15 +1,3 @@
-/**
- * --------------------------------------------------------
- * This demo was created using amCharts V4 preview release.
- *
- * V4 is the latest installement in amCharts data viz
- * library family, to be released in the first half of
- * 2018.
- *
- * For more information and documentation visit:
- * https://www.amcharts.com/docs/v4/
- * --------------------------------------------------------
- */
 
 // Create map instance
 var chart = am4core.create("bigMap", am4maps.MapChart);
@@ -31,14 +19,18 @@ polygonSeries.data = []
 
 // Configure series
 var polygonTemplate = polygonSeries.mapPolygons.template;
+// Create the tooltip format
 polygonTemplate.tooltipText = "{name}";
+//Set the fill colour for countries that dont have data. Doesn't matter as they are removed, but just in case
 polygonTemplate.fill = am4core.color("rgb(255, 228, 241)");
 polygonTemplate.propertyFields.fill = "color";
+
+// Build the onclick listener used when selecting a country
 polygonTemplate.events.on("hit", function (ev) {
+    // Pull the info of the country thats been clicked
     var data = ev.target.dataItem.dataContext;
 
-    var info = document.getElementById("info");
-
+    // Names all the components on the page that need to be changed when the user selects a country
     var name = document.getElementById("country-name");
     var flag = document.getElementById("flag");
 
@@ -52,6 +44,7 @@ polygonTemplate.events.on("hit", function (ev) {
     var recovered = document.getElementById("total-recovered");
     var recoveredPercentage = document.getElementById("total-recovered-percentage");
 
+    // Basic logic behind determining what the text is set to
     if (data.name) {
         name.innerText = data.name + " ";
     } else {
@@ -59,6 +52,7 @@ polygonTemplate.events.on("hit", function (ev) {
     }
 
     if (data.id) {
+        // Additionally makes use of the flagstrap library (Not natively associated with the amcharts plugin)
         flag.innerHTML = '<i class="flagstrap-icon flagstrap-' + (data.id).toLowerCase() + '" style="vertical-align:middle;"></i>';
     } else {
         flag.innerText = "Data is unavailable for this country."
@@ -108,9 +102,6 @@ polygonTemplate.events.on("hit", function (ev) {
 // Create hover state and set alternative fill color
 var hs = polygonTemplate.states.create("hover");
 hs.properties.fill = am4core.color("#222229");
-
-// Remove Antarctica
-polygonSeries.exclude = ["AQ"];
 
 // Add zoom control
 chart.zoomControl = new am4maps.ZoomControl();

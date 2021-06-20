@@ -20,6 +20,9 @@
         }
     };
 
+    // Modified to use the Alpha-2 protocol of the application. For more information on what I mean by this and
+    // why implementing this library was actually insanely difficult, refer to the comments in the
+    // file: src\main\resources\assets\js\bootstrap-sortable.js
     var countries = {
         "AF": "Afghanistan",
         "AL": "Albania",
@@ -360,6 +363,7 @@
                 .html($selectedLabel)
                 .append(selectedText);
 
+    
             var button = $('<button/>')
                 .attr('type', 'button')
                 .attr('data-toggle', 'dropdown')
