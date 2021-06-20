@@ -30,12 +30,13 @@ public class Index implements Handler {
         Map<String, Object> model = new HashMap<String, Object>();
 
         JDBCConnection jdbc = new JDBCConnection();
-        Map<String, Object> wwCumData = jdbc.getCumulative();
+        Map<String, String> indexData = jdbc.getIndexPageInfo();
 
-        String query = "SELECT * FROM getMostRecent ORDER BY NewCases Desc LIMIT 1;";
-
-        for (int i = 0; i < wwCumData.size(); i++){
-            model.put(wwCumData.keySet().toArray()[i].toString(), wwCumData.values().toArray()[i]);
+        for (int i = 0; i < indexData.size(); i++){
+            model.put(
+                indexData.keySet().toArray()[i].toString(), 
+                indexData.values().toArray()[i]
+            );
         }
 
         context.render(TEMPLATE, model);

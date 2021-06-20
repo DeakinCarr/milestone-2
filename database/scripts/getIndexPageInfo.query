@@ -1,0 +1,6 @@
+SELECT SUM(Infections) AS 'Ttl_Cases', SUM(Deaths) AS 'Ttl_Deaths', Butts AS 'New_Cases' 
+FROM Infections_Deaths
+INNER JOIN(
+    SELECT SUM(newCases) AS 'Butts'
+    FROM getMostRecent
+)
