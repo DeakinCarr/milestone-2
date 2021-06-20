@@ -342,6 +342,13 @@ public class JDBCConnection {
         return table;
     }
 
+    /**
+     * Generates a table including Total, New, and population % affected for both Case and Death fields for each
+     * state.
+     * Additionally the table includes population information.
+     * @return              A table consisting of basically all data in the database for each state.
+     * @throws IOException
+     */
     public ArrayList<ArrayList<String>> getStatesTableValues(String Country_Code) throws IOException {
         System.out.println("Called: getStatesTableValues(String Country_Code)");
         ArrayList<ArrayList<String>> table = new ArrayList<>();
@@ -360,6 +367,7 @@ public class JDBCConnection {
 
             ResultSet results = statement.executeQuery(query);
 
+            // Iterate through results and populate the map with relevant field values.
             while (results.next()){
                 ArrayList<String> res = new ArrayList<>();
                 res.add(results.getString("State_Province_Name"));
@@ -396,6 +404,12 @@ public class JDBCConnection {
         return table;
     }
 
+    /**
+     * Quiries for records of all countries that have subregions/provinces/states and returns it in the form of
+     * a hashmap made from the locations Alpha-2 Code (Key) and the official name of the location (Value)
+     * @return              Hashmap of Alpha-2 codes (key) and names (value) for countries with subregions.
+     * @throws IOException
+     */
     public HashMap<String, String> getCountriesWithStates() throws IOException {
         System.out.println("Called: getCountriesWithStates()");
         HashMap<String, String> codes = new HashMap<>();
@@ -413,6 +427,7 @@ public class JDBCConnection {
 
             ResultSet results = statement.executeQuery(query);
 
+            // Iterate through results and populate the map with relevant field values
             while (results.next()){
                 codes.put(results.getString("Country_Code"), results.getString("Country_Region_Name"));
             }
@@ -438,6 +453,15 @@ public class JDBCConnection {
         return codes;
     }
 
+    /**
+     * Creates a colour gradiant between two given values, and assigns a colour to each input value according to
+     * its numerical value. It then assigns the value of each provided key in the format rgb(?,?,?) in an RGB
+     * structure. This array of locations & associated colour key is returned in the form of an Array of Maps.
+     * @param values    An array of Maps in the from of ``id: numerical_value``
+     * @param minRGB    The minimum RGB values (array) to use in the gradiant.
+     * @param maxRGB    The maximum RGB values (array) to use in the gradiant.
+     * @return
+     */
     public ArrayList<Map<String, Object>> addColours(ArrayList<Map<String, Object>> values, int[] minRGB, int[] maxRGB) {
         Connection connection = null;
         try{
@@ -446,6 +470,8 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
+            // Get the minimum and maximum Case numbers in the database as to determine the colouring of the
+            // input values.
             String queryGetMax = "SELECT Country_Region_Name, Cases FROM getCumulative ORDER BY cases DESC LIMIT 1";
             String queryGetMin = "SELECT Country_Region_Name, Cases FROM getCumulative ORDER BY cases ASC LIMIT 1";
 
@@ -457,6 +483,8 @@ public class JDBCConnection {
             result.next();
             int min = result.getInt("Cases");
 
+            // Iterate through each of the input values and reassign the value as an expression of its place on
+            // the generated RGB gradiant.
             for (int i = 0; i < values.size(); i++){
                 double cases = Double.valueOf(String.valueOf(values.get(i).get("cases")).replaceAll(",",""));
                 double percentage = (((double)(cases) - min) / (double)(max - min));
@@ -485,6 +513,11 @@ public class JDBCConnection {
         return values;
     }
 
+    /**
+     * Create all the values used to populate the interactable map visualisation.
+     * @return              An array of maps that contain values relative to a specific country.
+     * @throws IOException
+     */
     public ArrayList<Map<String, Object>> getBigMap() throws IOException {
         System.out.println("Called: getBigMap()");
         ArrayList<Map<String, Object>> table = new ArrayList<>();
@@ -496,10 +529,12 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
+            // Read in the SQL query
             String query = readFile("database/scripts/getDataTable.query");
 
             ResultSet results = statement.executeQuery(query);
 
+            // Iterate through results and populate the map with relevant field values
             DecimalFormat formatter = new DecimalFormat("#,###");
             while (results.next()){
                 Map<String, Object> res = new HashMap<String, Object>();
@@ -513,6 +548,8 @@ public class JDBCConnection {
                 res.put("populationpercentage", String.valueOf(results.getDouble("Population Infected %") / 100.0));
                 table.add(res);
             }
+
+            // Generate the colours to go with the values
             int[] minRGB = {245, 138, 151};
             int[] maxRGB = {240, 0, 32};
             table = addColours(table, minRGB, maxRGB);
@@ -538,42 +575,11 @@ public class JDBCConnection {
         return table;
     }
 
-    public Map<String, Object> getFastestSpreading() throws IOException {
-        Map<String, Object> res = new HashMap<String, Object>();
-        Connection connection = null;
-
-        try {
-            connection = DriverManager.getConnection(DATABASE);
-
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-
-            String query = "SELECT * FROM getMostRecent ORDER BY NewCases Desc LIMIT 1;";
-
-            ResultSet results = statement.executeQuery(query);
-                
-            res.put("Country_Region_Name", results.getString("Country_Region_Name"));
-            res.put("Country_Region_Name", results.getString("Country_Region_Name"));
-
-            statement.close();
-        
-        } catch (SQLException e) {
-            // If there is an error, lets just pring the error
-            System.err.println(e.getMessage());
-        } finally {
-            // Safety code to cleanup
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                // connection close failed.
-                System.err.println(e.getMessage());
-            }
-        }
-
-        return res;
-    }
+    /**
+     * Queries the Regions in the database which have no associated data. Returns them in the form of a map.
+     * @return              An array of maps containing the name and code of regions without any available data
+     * @throws IOException
+     */
     public ArrayList<Map<String, String>> getDatalessRegions() throws IOException{
         ArrayList<Map<String, String>> res = new ArrayList<>();
         Connection connection = null;
@@ -614,6 +620,12 @@ public class JDBCConnection {
         return res;
     }
 
+    /**
+     * Queries the data to be used on the index page. Specifically, global cumulative cases, global cumulative 
+     * deaths, and global new cases. These values are returned in a map.
+     * @return              A map containing global cumulative cases, global cumulative deaths, and global new cases.
+     * @throws IOException
+     */
     public Map<String, String> getIndexPageInfo() throws IOException{
         System.out.println("Called: getIndexPageInfo()");
         Map<String, String> res = new HashMap<>();
@@ -631,7 +643,8 @@ public class JDBCConnection {
             ResultSet results = statement.executeQuery(query);
             
             DecimalFormat formatter = new DecimalFormat("#,###");
-
+            
+            // Iterate through results and populate the map with relevant field values
             while (results.next()){
                 res.put("Ttl_Cases",  formatter.format(results.getInt("Ttl_Cases")));
                 res.put("Ttl_Deaths", formatter.format(results.getInt("Ttl_Deaths")));
