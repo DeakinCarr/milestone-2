@@ -126,7 +126,6 @@ public class JDBCConnection2 {
                 statement.setQueryTimeout(30);
     
                 int temp = 0;
-                int j = 0;
                 Double[] longFull = new Double[312];
                 Double[] latFull = new Double[312];
                 String[] countCod = new String[312];
@@ -145,8 +144,8 @@ public class JDBCConnection2 {
                         if (!countCod[temp].equals("ZW")){ 
                             if (longFull[temp] >= (longitude - 15) 
                                 && longFull[temp] <= (longitude + 15) 
-                                && latFull[temp] >= (latitude - 15) 
-                                && latFull[temp] <= (latitude + 15)) {
+                                && latFull[temp] >= (latitude - 8) 
+                                && latFull[temp] <= (latitude + 8)) {
                                     System.out.println(countCod[temp] + "37");  
                                     ++temp; 
                             }
@@ -154,13 +153,12 @@ public class JDBCConnection2 {
                         else {
                             if (longFull[temp] >= (longitude - 15)
                             && longFull[temp] <= (longitude + 15) 
-                            && latFull[temp] >= (latitude - 15)
-                            && latFull[temp] <= (latitude + 15)){
-                                System.out.println("zim does fit");
+                            && latFull[temp] >= (latitude - 8)
+                            && latFull[temp] <= (latitude + 8)){
                             }
                             else {
-                                System.out.println("ZIM doesn't fit");
                                 countCod[temp] = null;
+                                ++temp;
                             }
                         }
                     }
