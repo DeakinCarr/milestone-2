@@ -6,15 +6,6 @@ import java.util.Map;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
-/**
- * Example Index HTML class using Javalin
- * <p>
- * Generate a static HTML page using Javalin
- * by writing the raw HTML into a Java String object
- *
- * @author Timothy Wiley, 2021. email: timothy.wiley@rmit.edu.au
- * @author Santha Sumanasekara, 2021. email: santha.sumanasekara@rmit.edu.au
- */
 public class Index implements Handler {
 
     // URL of this page relative to http://localhost:7000/
@@ -26,12 +17,16 @@ public class Index implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         // The model of data to provide to Thymeleaf.
-        // In this example the model will remain empty
         Map<String, Object> model = new HashMap<String, Object>();
 
+        // Establish a new connection to the database
         JDBCConnection jdbc = new JDBCConnection();
+
+        // Query the relavent data incl. Total Cases, Total Deaths, and New Cases
         Map<String, String> indexData = jdbc.getIndexPageInfo();
 
+        // Iterate through each of the keys in the indexData map, and add it to the model with its 
+        // associated value
         for (int i = 0; i < indexData.size(); i++){
             model.put(
                 indexData.keySet().toArray()[i].toString(), 
@@ -39,6 +34,7 @@ public class Index implements Handler {
             );
         }
 
+        // Beep-Boop render man
         context.render(TEMPLATE, model);
     }
 

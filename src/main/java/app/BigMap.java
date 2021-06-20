@@ -18,30 +18,37 @@ public class BigMap implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         // The model of data to provide to Thymeleaf.
-        // In this example the model will be filled with:
-        //  - Title to give to the h1 tag
-        //  - Array list of all movies for the UL element
         Map<String, Object> model = new HashMap<String, Object>();
 
         // Look up some information from JDBC
         // First we need to use your JDBCConnection class
         JDBCConnection jdbc = new JDBCConnection();
 
+        // Query all the data used to populate the map visualisation
+        // then append the results onto the model
         ArrayList<Map<String, Object>> mapVals = jdbc.getBigMap();
         model.put("mapVals", mapVals);
 
+        // Query all the regions that exist that do not have any data associated with the
+        // then append the results onto the model
         ArrayList<Map<String, String>> datalessRegions = jdbc.getDatalessRegions();
         model.put("datalessRegions", datalessRegions);
 
+        // Create a new single dimensional array to store the raw Alpha-2 codes for the
+        // regions which have no relavant data.
         ArrayList<String> excludedRegions = new ArrayList<>();
+        // Iterate through ArrayList of Maps (created earlier) and extracts the Alpha-2 codes into 
+        // the 1-D array.
         for (Map<String, String> region : datalessRegions) {
             excludedRegions.add(region.get("Country_Code"));
         }
+        // Add Antarctica as well. No one wants to see that (plus there is no data for it either).
         excludedRegions.add("AQ");
 
+        // Append the Array of excluded regions to the model.
         model.put("excludedRegions", excludedRegions);
-        // DO NOT MODIFY THIS
-        // Makes Javalin render the webpage using Thymeleaf
+
+        // Render away mon-fre
         context.render(TEMPLATE, model);
     }
 
