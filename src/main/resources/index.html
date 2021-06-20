@@ -6,18 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
 
-    <link rel="stylesheet" href="assets/css/flags.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Imports the css used for the flagstrap code. E.g. the css classes that modify the flag icons based on 
+         Alpha-2 code -->
+         <link rel="stylesheet" href="assets/css/flags.css">
+         <link rel="stylesheet" href="assets/css/styles.css">
+         <!-- The footer css stylesheet -->
+         <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+         <!-- Imports permitting the usage of certain google fonts -->
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
+         <!-- Imports some icons that are used in the page as well as *another* version of bootstrap for some 
+              components-->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 
 </head>
 
 <body style="background-color: #F7F8FC; overflow-x:hidden;">
+    <!-- The header object starts here. This is a consistent component to all pages -->
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -39,6 +46,8 @@
                 </div>
                 <div class="col-md-7" style="font-family: Nunito, sans-serif;">
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
+                        <!-- Here you can note that the active tab is simply dictated by the link with the 
+                        ``active`` class -->
                         <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="/countries">Countries</a></li>
@@ -70,6 +79,10 @@
                 </div>
                 <div class="col-lg-10 mx-auto">
                     <div class="hero-img">
+                        <!-- An amazing import I found that allows the usage of animations royalty free and 
+                             under a creative commons license. The following tag is what creates the surgeons
+                             animation. Admitedly no skill is required for its implementation, but its pretty
+                             damn aestehtic. -->
                         <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_wdXBRc.json"
                             background="transparent" speed="1" loop="" autoplay="">
                         </lottie-player>
@@ -134,11 +147,14 @@
                                 virus, the disease it causes and how it spreads. Protect yourself &amp; others from infection by
                                 washing your hands or using an alcohol based rub frequently and not touching your face.
                             </p>
-                            <a href="#prevention" class="hero-button" data-scroll=""><ic class="icon ion-ios-flask"></i>&nbsp;How can we stop the spread?</a>
+                            <!-- The flask icons below is an example of one of the icons used from within the 
+                                 ionicons package linked in the head -->
+                            <a href="#prevention" class="hero-button" data-scroll=""><i class="icon ion-ios-flask"></i>&nbsp;How can we stop the spread?</a>
                         </div>
                     </div>
                     <div class="col-md-5 offset-xl-1">
                         <div class="about-img">
+                            <!-- Last time ill say it, but these animations are pretty slick -->
                             <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_wv4mTG.json"
                             background="transparent" speed="1" loop="" autoplay="">
                             </lottie-player>
@@ -303,6 +319,8 @@
                 <div class="col-md-6 col-lg-4 text-center prevention-card">
                     <div class="prevention-card-inner">
                         <div class="icon">
+                            <!-- I can't help myself commenting on these yet again. They got me salivating just 
+                                 looking at my monitor -->
                             <lottie-player class="mx-auto" src="https://assets1.lottiefiles.com/private_files/lf30_Rq4Htd.json" background="transparent" speed="1" style="width: 180px; height: 180px;" loop="" autoplay="">
                             </lottie-player>
                         </div>
@@ -488,18 +506,27 @@
             <!-- Start: Copyright -->
         </footer>
     </div>
+
+    <!-- Imports jquery and bootstrap, a javascript library and css library respectively -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<!-- A seperate version of bootstrap that some components use, such as the country dropdown selection -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.flagstrap.js"></script>
+<!-- Honestly not sure why I need this, but stuff breaks when I remove it. 
+     It doesn't make sense. I have been attacking this problem for over a day. 
+     It needs to stay here. I am cursed with the knowledge that I can never escape the clutches of 
+     this javascript library. 
+     Why must so many frameworks exist? 
+     Why must I live in a world where people so freely spread useful tools?-->
+<script src="assets/js/jquery.flagstrap.js"></script> 
 
-<script src="assets/js/bootstrap-sortable.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
-
-
+<!-- The beautiful engine begind the animations this page uses. I am truly blessed to exist in the same world as
+     this library. I only learnt about this during this course, and it will literally change the way I develop
+     websites for the rest of my life. Stuff Nielsons design principles, people like pretty 
+     animations above all.-->
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 </html>

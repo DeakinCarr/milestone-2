@@ -6,17 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
     
+    <!-- Imports the css used for the flagstrap code. E.g. the css classes that modify the flag icons based on 
+         Alpha-2 code -->
     <link rel="stylesheet" href="assets/css/flags.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- The footer css stylesheet -->
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <!-- Imports permitting the usage of certain google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
+    <!-- Imports some icons that are used in the page as well as *another* version of bootstrap for some 
+        components-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
 </head>
 
 <body style="background-color: white;">
+    <!-- The header object starts here. This is a consistent component to all pages -->
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -42,6 +49,8 @@
                         <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="/countries">Countries</a></li>
                         <li class="nav-item"><a class="nav-link" href="/states">States</a></li>
+                        <!-- Here you can note that the active tab is simply dictated by the link with the 
+                        ``active`` class -->
                         <li class="nav-item"><a class="nav-link active" href="/map">World Map</a></li>
                     </ul>
                 </div>
@@ -55,6 +64,8 @@
             <div class="row no-gutters"> <!-- Table -->
                 <div class="col-xl-2 col-lg-3 col-md-5 col-sm-12">
                     <div id="info">
+                        <!-- The components are later named in the javascript link. They are the components 
+                             referred to when clicking on the map visualisation. -->
                         <h1 style="font-family: 'Fira Sans', sans-serif;"><span id="country-name">Select a country</span><span id="flag"></span></h1>
                         <div class="divider">
                             <h6 class="title">Total Cases</h6>
@@ -79,6 +90,8 @@
                     </div>
                 </div>
                 <div class="col-xl-10 col-lg-9 col-md-7 col-sm-12">
+                    <!-- This is the graph. It is primarily initialised at the end of this
+                         page through the amcharts scripts and personal javascript -->
                     <div id="bigMap"></div>
                 </div>
             </div>
@@ -90,8 +103,17 @@
             <div class="col-12">
                 <h3>The following countries are not represented in the above chart:</h3>
             </div>
+            <!-- This is an array of the regions that there are no data for. 
+                 They are further explained in parental scripts and documentation.-->
             <div th:each="region : ${datalessRegions}" class="col-3">
                 <h4>
+                    <!-- This icon uses the flagstrap library. Basically, by
+                         including the countries Alpha-2 code in the class
+                         definition, the icon shifts its background (the 
+                         background being a grid of flag: 
+                         src\main\resources\assets\css\flags.png) in such a
+                         way as to only reveal the desired flag within the 
+                         components width and height.                       -->
                     <i style="border:1px solid black" th:class="${'flagstrap-icon flagstrap-' + region.Country_Code.toLowerCase()}"></i>
                     <span th:text="${region.Alpha_2_Name}"></span>
                 </h4>
@@ -124,30 +146,30 @@
         </footer>
     </div>
     <!-- End: Footer Basic -->
+    
+    <!-- Imports jquery and bootstrap, a javascript library and css library respectively -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
+<!-- A seperate version of bootstrap that some components use-->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.flagstrap.js"></script>
-<script>$('#demo').flagStrap();</script>
 
 
+<!-- Import the amcharts library used for the graph presented under the document header -->
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/maps.js"></script>
 <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+<!-- Runs custom javascript code for the initialisation of the graph. -->
 <script src="assets/js/maps/amchartsbigmap.js"></script>
 
+<!-- Populates the map-visualisation with the data from the database, as well as sets the array of countries
+     that should be excluded from being displayed (as they have no relative data for their region) -->
 <script th:inline="javascript">
 polygonSeries.data = [[${mapVals}]];
-
 polygonSeries.exclude = [[${excludedRegions}]];
 </script>
-
-<script src="assets/js/bootstrap-sortable.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
 
 </html>

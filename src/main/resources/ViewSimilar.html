@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
 
+    <!-- Imports the css used for the flagstrap code. E.g. the css classes that modify the flag icons based on 
+         Alpha-2 code -->
     <link rel="stylesheet" href="assets/css/flags.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- The footer css stylesheet -->
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <!-- Imports permitting the usage of certain google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
+    <!-- Imports some icons that are used in the page as well as *another* version of bootstrap for some 
+        components-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
 </head>
 
 <body style="background-color: #F7F8FC; overflow-x:hidden;">
+    <!-- The header object starts here. This is a consistent component to all pages -->
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -40,6 +46,8 @@
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/facts">Facts</a></li>
+                        <!-- Here you can note that the active tab is simply dictated by the link with the 
+                        ``active`` class -->
                         <li class="nav-item"><a class="nav-link active" href="/countries">Countries</a></li>
                         <li class="nav-item"><a class="nav-link" href="/states">States</a></li>
                         <li class="nav-item"><a class="nav-link" href="/map">World Map</a></li>
@@ -75,6 +83,9 @@
                                     <div class="col-lg-5" style="text-align:right;">
 
                                         <form id="country_selection" action="/similar" method="POST">
+                                            <!-- This is the Country Dropdown selection. It is primarily initialised
+                                                 at the end of this page through the amcharts scripts and javascript 
+                                                 using these settings -->
                                             <div id="demo" data-input-name="country"
                                                     th:data-selected-country="${country}" data-button-size="btn-lg"
                                                     data-button-type="btn-warning" data-scrollable="true"
@@ -91,6 +102,8 @@
                                 <!-- Start: Bottom Half -->
                                 <div class="row">
                                     <div class="col">
+                                        <!-- This table is given the ``table sortable`` class as to identify it
+                                             to the bootstrap-sortable script as a sortable table -->
                                         <table id="country-table" class="table sortable">
                                             <thead style="font-family: 'Fira Sans', sans-serif;">
                                                 <tr>
@@ -106,6 +119,13 @@
                                             </thead>
                                             <tbody style="font-family: Nunito, sans-serif;">
                                                 <tr th:each="table_val : ${table_vals}">
+                                                    <!-- This icon uses the flagstrap library. Basically, by
+                                                         including the countries Alpha-2 code in the class
+                                                         definition, the icon shifts its background (the 
+                                                         background being a grid of flag: 
+                                                         src\main\resources\assets\css\flags.png) in such a
+                                                         way as to only reveal the desired flag within the 
+                                                         components width and height.                       -->
                                                     <td scope="row"><i
                                                         th:class="${'flagstrap-icon flagstrap-' + table_val[0].toLowerCase()}"></i><span
                                                         th:text="${' ' + table_val[1]}"></span></td>
@@ -149,19 +169,24 @@
                 <li class="list-inline-item"><a href="/map">Map</a></li>
             </ul>
             <!-- End: Links -->
-            <p class="copyright">Made with &#10084;&#65039; by Deakin Carr</p>
+            <p class="copyright">Made with &#10084;&#65039; by Max Cantwell</p>
             <!-- Start: Copyright -->
         </footer>
     </div>
     <!-- End: Footer Basic --> 
 </body>
+
+<!-- Imports jquery and bootstrap, a javascript library and css library respectively -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
 
+<!-- A seperate version of bootstrap that some components use, such as the country dropdown selection -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.flagstrap.js"></script>
+<!-- Activates the country dropdown with a listener for a new country to be
+     selected, at which time the form wrapping the dropdown will be submitted. -->
 <script th:inline="javascript">
 $('#demo').flagStrap({
     onSelect: function (value, element) {
@@ -170,13 +195,8 @@ $('#demo').flagStrap({
 });
 </script>
 
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-
-<script src="assets/js/maps/amchartsexample.js"></script>
-
+<!-- Imports the boostrap-sortable library, which permits table to be sortable once identified with specific 
+     classes-->
 <script src="assets/js/bootstrap-sortable.js"></script>
 <script src="assets/js/moment.min.js"></script>
 <link href="assets/css/bootstrap-sortable.css" rel="stylesheet">

@@ -5,18 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Covid-19 Database Website</title>
+    <!-- Imports the css used for the flagstrap code. E.g. the css classes that modify the flag icons based on 
+        Alpha-2 code -->
     <link rel="stylesheet" href="assets/css/flags.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- The footer css stylesheet -->
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <!-- Imports permitting the usage of certain google fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:500,500i,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200i,300,300i,400,400i">
+    <!-- Imports some icons that are used in the page as well as *another* version of bootstrap for some 
+         components-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Imports Maxs style sheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/mystyle.css" />
 
 </head>
 
 <body style="background-color: #F7F8FC;size: 100%">
+    <!-- The header object starts here. This is a consistent component to all pages -->
     <header style="padding: 20px 0px;background-color: white;">
         <div class="container">
             <div class="row align-items-center">
@@ -39,6 +47,8 @@
                 <div class="col-md-7" style="font-family: Nunito, sans-serif;">
                     <ul class="nav nav-tabs justify-content-center" style="text-align:center;">
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <!-- Here you can note that the active tab is simply dictated by the link with the 
+                        ``active`` class -->
                         <li class="nav-item"><a class="nav-link active" href="/facts">Facts</a></li>
                         <li class="nav-item"><a class="nav-link" href="/countries">Countries</a></li>
                         <li class="nav-item"><a class="nav-link" href="/states">States</a></li>
@@ -106,27 +116,8 @@
     </div>
 </body>
 
+<!-- A seperate version of bootstrap that some components use -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.flagstrap.js"></script>
-<script th:inline="javascript">
-$('#demo').flagStrap({
-    onSelect: function (value, element) {
-        document.getElementById("country_selection").submit()
-    },
-    countries: [[${codes}]]
-});
-</script>
-
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
-
-<script src="assets/js/maps/amchartsexample.js"></script>
-
-<script src="assets/js/bootstrap-sortable.js"></script>
-<script src="assets/js/moment.min.js"></script>
-<link href="assets/css/bootstrap-sortable.css" rel="stylesheet">
 
 </html>
