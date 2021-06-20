@@ -163,10 +163,8 @@ public class JDBCConnection2 {
                         }
                     }
                 }
+                longLatStat.close();
                 // Gets all other Longitude Latitude and Country names
-    
-                
-    
     
                 String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code IN ('" + countCod[0] + "'";
                 for (int i = 1; i < countCod.length; ++i) {
@@ -253,7 +251,7 @@ public class JDBCConnection2 {
                             }
                         }
                         // Gets all other Longitude Latitude and Country names
-            
+                        popStat.close();
                         
             
             
