@@ -32,9 +32,7 @@ public class JDBCConnection2 {
         System.out.println("Created JDBC Connection Object");
     }
 
-    /**
-     * Get all of the Movies in the database
-     */
+    // Gets the total number of Deaths
     public int getDeathsTot() {
         int count = 0;
         Connection connection = null;
@@ -63,6 +61,7 @@ public class JDBCConnection2 {
 
         return count;
     }
+    // Gets the total number of infections
     public int getInfectionsTot() {
         int count = 0;
         Connection connection = null;
@@ -131,12 +130,14 @@ public class JDBCConnection2 {
                 String[] countCod = new String[312];
                 String question = readFile("database/scripts/getFullLongLat.query");
                 ResultSet fullLongLat = longLatStat.executeQuery(question);
-                // Gets the initial Longitude and Latitude of the country
+                // Gets the Longitude and Latitude of the country that is selected
                 String getLongLatInfo = readFile("database/scripts/getLongLatInfo.query") + " \"" + Country_Code + "\"";
                 ResultSet longLat = statement.executeQuery(getLongLatInfo);
                 while (longLat.next()){
                     Double longitude = longLat.getDouble("Longitude");
                     Double latitude = longLat.getDouble("Latitude");
+                    // Compares all other countries with the initial country selected removing 
+                    // the ones that don't meet the criteria. Also some error handling.
                     while (fullLongLat.next()) {
                         countCod[temp] = fullLongLat.getString("Country_Code");
                         longFull[temp] = fullLongLat.getDouble("Longitude");
@@ -145,8 +146,7 @@ public class JDBCConnection2 {
                             if (longFull[temp] >= (longitude - 15) 
                                 && longFull[temp] <= (longitude + 15) 
                                 && latFull[temp] >= (latitude - 8) 
-                                && latFull[temp] <= (latitude + 8)) {
-                                    System.out.println(countCod[temp] + "37");  
+                                && latFull[temp] <= (latitude + 8)) {  
                                     ++temp; 
                             }
                         }
@@ -164,14 +164,13 @@ public class JDBCConnection2 {
                     }
                 }
                 longLatStat.close();
-                // Gets all other Longitude Latitude and Country names
-    
+                
+                // Generates the table
                 String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code IN ('" + countCod[0] + "'";
                 for (int i = 1; i < countCod.length; ++i) {
                     query = query + ",'" + countCod[i] + "'";
                 }
                 query += ")";
-                // System.out.println(query);
     
                 ResultSet results = statement.executeQuery(query);
     
@@ -230,11 +229,13 @@ public class JDBCConnection2 {
                         String[] countCod = new String[312];
                         String question = readFile("database/scripts/getFullPop.query");
                         ResultSet fullPop = popStat.executeQuery(question);
-                        // Gets the initial Longitude and Latitude of the country
+                        // Gets the Population of the country that is selected
                         String getPopulation = readFile("database/scripts/getPopulation.query") + " \"" + Country_Code + "\"";
                         ResultSet pop = statement.executeQuery(getPopulation);
                         while (pop.next()){
                             Double basePopulation = pop.getDouble("SUM(Population)");
+                            // Compares the population of the selected country to all other countries to make sure it's 
+                            // within an acceptable range. Also some error handling.
                             while (fullPop.next()) {
                                 countCod[temp] = fullPop.getString("Country_Code");
                                 popFull[temp] = fullPop.getInt("SUM(Population)");
@@ -250,7 +251,7 @@ public class JDBCConnection2 {
                                 }
                             }
                         }
-                        // Gets all other Longitude Latitude and Country names
+                        
                         popStat.close();
                         
             
@@ -260,7 +261,6 @@ public class JDBCConnection2 {
                             query = query + ",'" + countCod[i] + "'";
                         }
                         query += ")";
-                        // System.out.println(query);
             
                         ResultSet results = statement.executeQuery(query);
             
