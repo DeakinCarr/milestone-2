@@ -35,6 +35,8 @@ public class compareStates implements Handler{
         model.put("table_vals", table);
         model.put("codes", codes);
         
+
+
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage using Thymeleaf
         context.render(TEMPLATE, model);

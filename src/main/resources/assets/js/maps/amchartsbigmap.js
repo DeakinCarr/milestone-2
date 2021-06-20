@@ -61,47 +61,47 @@ polygonTemplate.events.on("hit", function (ev) {
     if (data.id) {
         flag.innerHTML = '<i class="flagstrap-icon flagstrap-' + (data.id).toLowerCase() + '" style="vertical-align:middle;"></i>';
     } else {
-        flag.innerText = "NaN"
+        flag.innerText = "Data is unavailable for this country."
     }
     
 
     if (data.cases) {
         cases.innerText = data.cases;
     } else {
-        cases.innerText = "NaN"
+        cases.innerText = ""
     }
     if (data.newCases) {
         newCases.innerText = data.newCases;
     } else {
-        newCases.innerText = "NaN"
+        newCases.innerText = ""
     }
 
     if (data.deaths) {
         deaths.innerText = data.deaths;
     } else {
-        deaths.innerText = "NaN"
+        deaths.innerText = ""
     }
     if (data.deathsPercentage) {
         deathsPercentage.innerText = data.deathsPercentage + "%";
     } else {
-        deathsPercentage.innerText = "NaN"
+        deathsPercentage.innerText = ""
     }
     if (data.newDeaths) {
         newDeaths.innerText = data.newDeaths;
     } else {
-        newDeaths.innerText = "NaN"
+        newDeaths.innerText = ""
     }
 
     
     if (data.population) {
         recovered.innerText = data.population;
     } else {
-        recovered.innerText = "NaN"
+        recovered.innerText = ""
     }
     if (data.populationpercentage) {
         recoveredPercentage.innerText = data.populationpercentage + "% Infected";
     } else {
-        recoveredPercentage.innerText = "NaN"
+        recoveredPercentage.innerText = ""
     }
 });
 

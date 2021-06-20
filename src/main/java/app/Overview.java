@@ -66,6 +66,19 @@ public class Overview implements Handler{
         model.put("table_vals", table);
         model.put("heatMap", heatMap);
         
+        
+
+        ArrayList<Map<String, String>> datalessRegions = jdbc.getDatalessRegions();
+        model.put("datalessRegions", datalessRegions);
+
+        ArrayList<String> excludedRegions = new ArrayList<>();
+        for (Map<String, String> region : datalessRegions) {
+            excludedRegions.add(region.get("Country_Code"));
+        }
+        excludedRegions.add("AQ");
+
+        model.put("excludedRegions", excludedRegions);
+
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage using Thymeleaf
         context.render(TEMPLATE, model);
@@ -76,19 +89,3 @@ public class Overview implements Handler{
     }
 
 }
-
-/*For populating the table
-
-SELECT co.Country, da.Date, Cases, Deaths
-FROM Statistics st
-LEFT JOIN Location lo ON
-    st.Location = lo.ID    
-LEFT JOIN Countries co ON
-    lo.Country = co.ID
-LEFT JOIN Dates da ON
-    da.ID = st.Date
-WHERE Deaths >= 0 AND Cases >= 0
-GROUP BY co.Country, da.Date
-ORDER BY da.ID DESC
-LIMIT 189;
-*/

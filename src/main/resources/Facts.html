@@ -50,31 +50,35 @@
             </div>
         </div>
     </header>
-    <div>
-        <h3 style="font-family: 'Fira Sans', sans-serif; font-size: 52px; text-align: center;">Key Facts</h3>
-    </div>
-    
-    <div id = "factsblock" style="min-height: 85vh;">
-        <div class = "fact">
-            <h1>#1</h1>
-            <h2>The total number of Covid-19 deaths worldwide</h2>
-            <div class = "factnum">
-                <h1><span  th:text="${deathsTot}"></span></h1>
+        
+    <section class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col">
+                <h3 style="font-family: 'Fira Sans', sans-serif; font-size: 52px; text-align: center;">Key Facts</h3>
             </div>
         </div>
-        <div class = "fact">
-            <h1>#2</h1>
-            <h2>The total number of Covid-19 confirmed cases worldwide</h2>
-            <div class = "factnum">
-                <h1><span th:text="${infectionsTot}"></span></h1>
+        <div id = "factsblock" class="row" style="min-height: 85vh;">
+            <div class = "fact col">
+                <h1>#1</h1>
+                <h2>The total number of Covid-19 deaths worldwide</h2>
+                <div class = "factnum">
+                    <h1><span  th:text="${deathsTot}"></span></h1>
+                </div>
+            </div>
+            <div class = "fact col">
+                <h1>#2</h1>
+                <h2>The total number of Covid-19 confirmed cases worldwide</h2>
+                <div class = "factnum">
+                    <h1><span th:text="${infectionsTot}"></span></h1>
+                </div>
+            </div>
+            <div class = "fact col">
+                <h1>#3</h1>
+                <h2>Of the 10 highest days of infection, 7 were within the last month</h2>
+                <div class = "factnum"><h1 style="opacity: 0">well well well</h1></div>
             </div>
         </div>
-        <div class = "fact">
-            <h1>#3</h1>
-            <h2>Of the 10 highest days of infection, 7 were within the last month</h2>
-            <div class = "factnum"><h1 style="opacity: 0">well well well</h1></div>
-        </div>
-    </div>
+    </section>
     <div class="footer-basic" style="clear: both; position: relative; height: 200px; margin-top: -200px;">
         <footer>
             <!-- Start: Social Icons -->
