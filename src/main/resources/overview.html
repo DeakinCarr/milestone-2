@@ -216,6 +216,17 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3>The following countries are not represented in the above:</h3>
+                </div>
+                <div th:each="region : ${datalessRegions}" class="col-3">
+                    <h4>
+                        <i style="border:1px solid black" th:class="${'flagstrap-icon flagstrap-' + region.Country_Code.toLowerCase()}"></i>
+                        <span th:text="${region.Alpha_2_Name}"></span>
+                    </h4>
+                </div>
+            </div>
         </div>
     </section>
     <!-- End: Content -->
@@ -277,7 +288,7 @@
     // import data
     polygonSeries.data = [[${heatMap}]];
     // excludes Antarctica
-    polygonSeries.exclude = ["AQ"];
+    polygonSeries.exclude = [[${excludedRegions}]];
 </script>
 
 

@@ -1,13 +1,14 @@
 CREATE VIEW getCumulative(Country_Region_Name, Country_Code, Cases, Deaths)
 AS
-    SELECT Country_Codes.Alpha_2_Name, lo.Country_Code, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths
+	SELECT Country_Codes.Alpha_2_Name, lo.Country_Code, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths
     
     FROM Infections_Deaths st 
     
-    LEFT JOIN Locations lo ON 
+    INNER JOIN Locations lo ON 
         st.Location_ID = lo.ID 
-    LEFT JOIN Countries_Regions co ON 
+    INNER JOIN Countries_Regions co ON 
         lo.Country_Region_ID = co.ID 
-    LEFT JOIN Country_Codes ON
+    INNER JOIN Country_Codes ON
         Country_Codes.Country_Code = lo.Country_Code
+        
     GROUP BY co.Country_Region_Name, lo.Country_Code
