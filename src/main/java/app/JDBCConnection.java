@@ -315,7 +315,9 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             String query = readFile("database/scripts/getStatesDataTable.query");
-            query = query + "WHERE NOT gC.State_Province_Name IS NULL AND gC.Country_Code = '" + Country_Code + "'";
+            query += "WHERE NOT gC.State_Province_Name IS NULL AND ";
+            query += "gC.Country_Region_Name = (";
+            query += "SELECT Alpha_2_Name FROM Country_Codes WHERE Country_Code = '" + Country_Code + "')";
 
             ResultSet results = statement.executeQuery(query);
 
@@ -357,8 +359,8 @@ public class JDBCConnection {
         return table;
     }
 
-    public HashMap<String, String> getStatesCodes() throws IOException {
-        System.out.println("Called: getStatesCodes()");
+    public HashMap<String, String> getCountriesWithStates() throws IOException {
+        System.out.println("Called: getCountriesWithStates()");
         HashMap<String, String> codes = new HashMap<>();
         Connection connection = null;
 
@@ -370,8 +372,7 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
-            String query = readFile("database/scripts/getStatesDataTable.query");
-            query = query + "WHERE NOT gC.State_Province_Name IS NULL GROUP BY Country_Code";
+            String query = readFile("database/scripts/getCountriesWithStates.query");
 
             ResultSet results = statement.executeQuery(query);
 
@@ -395,7 +396,7 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
-        System.out.println("Concluded: getStatesCodes()\n");
+        System.out.println("Concluded: getCountriesWithStates()\n");
 
         return codes;
     }
@@ -448,6 +449,7 @@ public class JDBCConnection {
     }
 
     public ArrayList<Map<String, Object>> getBigMap() throws IOException {
+        System.out.println("Called: getBigMap()");
         ArrayList<Map<String, Object>> table = new ArrayList<>();
         Connection connection = null;
 
@@ -494,6 +496,7 @@ public class JDBCConnection {
                 System.err.println(e.getMessage());
             }
         }
+        System.out.println("Concluded: getBigMap()\n");
 
         return table;
     }

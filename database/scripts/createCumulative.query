@@ -1,6 +1,6 @@
 CREATE VIEW getCumulative(Country_Region_Name, Country_Code, Cases, Deaths)
 AS
-    SELECT Country_Codes.Country, lo.Country_Code, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths
+    SELECT Country_Codes.Alpha_2_Name, lo.Country_Code, SUM(Infections) AS Cases, SUM(Deaths) AS Deaths
     
     FROM Infections_Deaths st 
     

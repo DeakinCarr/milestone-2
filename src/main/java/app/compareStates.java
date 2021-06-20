@@ -30,7 +30,7 @@ public class compareStates implements Handler{
 
         JDBCConnection jdbc = new JDBCConnection();
         ArrayList<ArrayList<String>> table = jdbc.getStatesTableValues(countryCode);
-        HashMap<String, String> codes = jdbc.getStatesCodes();
+        HashMap<String, String> codes = jdbc.getCountriesWithStates();
         System.out.print(codes);
         model.put("table_vals", table);
         model.put("codes", codes);

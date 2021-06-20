@@ -1,7 +1,7 @@
 CREATE VIEW getPopulation(Country_Region_Name, Country_Code, Population)
 AS
-    SELECT Country_Region_Name, Country_Code, SUM(Population)
+SELECT Country_Region_Name, Country_Code, SUM(Population)
     FROM Locations Lo
     LEFT JOIN Countries_Regions CR
         ON Lo.Country_Region_ID = CR.ID
-    GROUP BY Country_Region_Name
+    GROUP BY Country_Code

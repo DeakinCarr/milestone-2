@@ -1,0 +1,10 @@
+SELECT Country_Codes.Alpha_2_Name, Country_Codes.Country_Code
+FROM Country_Codes
+
+EXCEPT
+
+SELECT Country_Codes.Alpha_2_Name, Country_Codes.Country_Code
+FROM Country_Codes
+INNER JOIN Locations
+    ON Locations.country_code = country_codes.country_code
+    
