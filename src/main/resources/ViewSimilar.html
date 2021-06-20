@@ -74,10 +74,11 @@
                                     </div>
                                     <div class="col-lg-5" style="text-align:right;">
 
-                                        <div id="demo" data-input-name="country" th:data-selected-country="${country}"
-                                            data-button-size="btn-lg" data-button-type="btn-warning"
-                                            data-scrollable="true" data-scrollable-height="250px" name="country">
-                                        </div>
+                                        <div id="demo" data-input-name="country"
+                                                th:data-selected-country="${country}" data-button-size="btn-lg"
+                                                data-button-type="btn-warning" data-scrollable="true"
+                                                data-scrollable-height="250px" name="country">
+                                            </div>
 
                                     </div>
                                 </div>
@@ -155,8 +156,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
 
-</body>
-
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.flagstrap.js"></script>
@@ -164,8 +163,7 @@
 $('#demo').flagStrap({
     onSelect: function (value, element) {
         document.getElementById("country_selection").submit()
-    },
-    countries: [[${codes}]]
+    }
 });
 </script>
 
