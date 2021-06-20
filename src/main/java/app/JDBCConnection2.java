@@ -142,6 +142,7 @@ public class JDBCConnection2 {
                         countCod[temp] = fullLongLat.getString("Country_Code");
                         longFull[temp] = fullLongLat.getDouble("Longitude");
                         latFull[temp] = fullLongLat.getDouble("Latitude");
+                        // Checks if the country is Zimbabwe as it is found at the end of the list
                         if (!countCod[temp].equals("ZW")){ 
                             if (longFull[temp] >= (longitude - 15) 
                                 && longFull[temp] <= (longitude + 15) 
@@ -150,6 +151,7 @@ public class JDBCConnection2 {
                                     ++temp; 
                             }
                         }
+                        // Error handling for Zimbabwe
                         else {
                             if (longFull[temp] >= (longitude - 15)
                             && longFull[temp] <= (longitude + 15) 
@@ -165,7 +167,7 @@ public class JDBCConnection2 {
                 }
                 longLatStat.close();
                 
-                // Generates the table
+                // Generates a table of data based on the countries that match the above criteria
                 String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code IN ('" + countCod[0] + "'";
                 for (int i = 1; i < countCod.length; ++i) {
                     query = query + ",'" + countCod[i] + "'";
@@ -243,6 +245,8 @@ public class JDBCConnection2 {
                                     && popFull[temp] <= (basePopulation + (basePopulation * 0.3))) {
                                     ++temp;   
                                 }
+                                // Checks if popFull[temp] is equal to the population of Zimbabwe
+                                // Also has some error handling
                                 if (popFull[temp] == 14862927) {
                                     if (!(popFull[temp] >= (basePopulation - (basePopulation * 0.3)) 
                                     && popFull[temp] <= (basePopulation + (basePopulation * 0.3)))) {
@@ -255,7 +259,7 @@ public class JDBCConnection2 {
                         popStat.close();
                         
             
-            
+                        // Generates a table of data based on the countries that match the above criteria
                         String query = readFile("database/scripts/getSimilarDataTable.query") + " WHERE Country_Code IN ('" + countCod[0] + "'";
                         for (int i = 1; i < countCod.length; ++i) {
                             query = query + ",'" + countCod[i] + "'";
