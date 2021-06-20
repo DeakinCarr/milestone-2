@@ -5,7 +5,7 @@ LEFT JOIN Countries_Regions
     ON locations.Country_Region_ID = countries_regions.id
 
 LEFT JOIN Country_Codes co 
-    ON co.Country = countries_regions.country_region_name
+    ON co.Alpha_2_Name = countries_regions.country_region_name
     
 WHERE NOT State_Province_ID = 200
 

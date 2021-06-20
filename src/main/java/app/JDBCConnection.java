@@ -317,7 +317,7 @@ public class JDBCConnection {
             String query = readFile("database/scripts/getStatesDataTable.query");
             query += "WHERE NOT gC.State_Province_Name IS NULL AND ";
             query += "gC.Country_Region_Name = (";
-            query += "SELECT Country FROM Country_Codes WHERE Country_Code = '" + Country_Code + "')";
+            query += "SELECT Alpha_2_Name FROM Country_Codes WHERE Country_Code = '" + Country_Code + "')";
 
             ResultSet results = statement.executeQuery(query);
 
