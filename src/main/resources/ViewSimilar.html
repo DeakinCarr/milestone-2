@@ -105,14 +105,16 @@
                                             </thead>
                                             <tbody style="font-family: Nunito, sans-serif;">
                                                 <tr th:each="table_val : ${table_vals}">
-                                                    <td scope="row" th:text="${table_val[0]}"></td>
+                                                    <td scope="row"><i
+                                                        th:class="${'flagstrap-icon flagstrap-' + table_val[0].toLowerCase()}"></i><span
+                                                        th:text="${' ' + table_val[1]}"></span></td>
+                                                    <td th:text="${table_val[2]}"></td>
                                                     <td th:text="${table_val[3]}"></td>
                                                     <td th:text="${table_val[4]}"></td>
                                                     <td th:text="${table_val[5]}"></td>
                                                     <td th:text="${table_val[6]}"></td>
                                                     <td th:text="${table_val[7]}"></td>
                                                     <td th:text="${table_val[8]}"></td>
-                                                    <td th:text="${table_val[9]}"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
