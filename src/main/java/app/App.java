@@ -4,15 +4,6 @@ import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
 
-/**
- * Main Application Class.
- * <p>
- * Running this class as regular java application will start the 
- * Javalin HTTP Server and our web application.
- *
- * @author Timothy Wiley, 2021. email: timothy.wiley@rmit.edu.au
- * @author Santha Sumanasekara, 2021. email: santha.sumanasekara@rmit.edu.au
- */
 public class App {
 
     public static final int         JAVALIN_PORT    = 7000;
@@ -34,9 +25,8 @@ public class App {
     }
 
     public static void configureRoutes(Javalin app) {
-        // Note in this example we must add Movies Type as a GET and a POST!
         
-        // ADD ALL OF YOUR WEBPAGES HERE
+        // WEBPAGES HERE
         app.get(Index.URL, new Index());
         app.get(Overview.URL, new Overview());
         app.get(BigMap.URL, new BigMap());
